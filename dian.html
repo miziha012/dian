@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>泡泡雾 · 电子烟</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- 多个 Remix Icon CDN 源以确保加载成功 -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+  <!-- 备用：如果上面失败，使用静态CDN -->
+  <link rel="stylesheet" href="https://cdn.staticfile.org/remixicon/4.2.0/remixicon.css">
+  <style>
+    /* 完全保留孟菲斯风格的样式，不做任何简化 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: #f0eae3;
+      color: #2c2c2c;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      width: 300px;
+      height: 300px;
+      background: rgba(210, 190, 170, 0.15);
+      border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+      top: -50px;
+      right: -80px;
+      z-index: 0;
+      filter: blur(20px);
+    }
+    body::after {
+      content: '';
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: rgba(160, 190, 210, 0.1);
+      border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
+      bottom: -100px;
+      left: -100px;
+      z-index: 0;
+      filter: blur(30px);
+    }
+
+    .app {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      padding: 24px 18px 20px 18px;
+      scrollbar-width: thin;
+      scrollbar-color: #c0b0a0 #ede0d5;
+    }
+
+    .page.hidden {
+      display: none;
+    }
+
+    .page::-webkit-scrollbar {
+      width: 6px;
+    }
+    .page::-webkit-scrollbar-track {
+      background: #ede0d5;
+      border-radius: 20px;
+    }
+    .page::-webkit-scrollbar-thumb {
+      background: #c0b0a0;
+      border-radius: 20px;
+    }
+
+    /* ===== 列表页头部 ===== */
+    .header-title {
+      font-size: 48px;
+      font-weight: 700;
+      color: #5b4e44;
+      line-height: 1;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+      letter-spacing: -1px;
+      text-shadow: 6px 6px 0 #e8d9cc, 8px 8px 0 rgba(0,0,0,0.02);
+    }
+    .header-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 16px;
+      background: repeating-linear-gradient(45deg, #ddcbb8, #ddcbb8 8px, #eeddcc 8px, #eeddcc 16px);
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0.4;
+    }
+
+    /* ===== 列表卡片 ===== 颜色由CSS变量动态控制 */
+    .product-list {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .product-card {
+      background: var(--card-bg);
+      border-radius: 60px 30px 60px 30px;
+      padding: 20px 20px 24px 20px;
+      box-shadow: 12px 12px 0 var(--card-shadow), 16px 16px 0 rgba(0,0,0,0.02);
+      border: 2px solid var(--card-border);
+      transform: rotate(-0.5deg);
+      transition: all 0.2s ease;
+    }
+
+    .product-card:nth-child(2) {
+      border-radius: 30px 60px 30px 60px;
+      transform: rotate(0.8deg);
+    }
+    .product-card:nth-child(3) {
+      border-radius: 80px 20px 80px 20px;
+      transform: rotate(-1deg);
+    }
+    .product-card:nth-child(4) {
+      border-radius: 40px 80px 40px 80px;
+      transform: rotate(0.3deg);
+    }
+    .product-card:nth-child(5) {
+      border-radius: 70px 30px 70px 30px;
+      transform: rotate(-0.7deg);
+    }
+    .product-card:nth-child(6) {
+      border-radius: 50px 70px 50px 70px;
+      transform: rotate(1deg);
+    }
+
+    .card-image {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50% 30% 50% 30% / 40% 50% 40% 50%;
+      overflow: hidden;
+      margin-bottom: 16px;
+      border: 4px solid white;
+      box-shadow: 0 0 0 2px var(--card-border), 0 10px 20px rgba(0,0,0,0.05);
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .img-error-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f0e0d0;
+      color: #a09080;
+      font-size: 16px;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+    }
+
+    .product-name {
+      font-size: 24px;
+      font-weight: 700;
+      color: #2c2c2c;
+      background: var(--name-bg);
+      padding: 0 12px 0 6px;
+      border-radius: 40px 0 20px 0;
+      line-height: 1.3;
+    }
+
+    .product-price {
+      font-size: 28px;
+      font-weight: 700;
+      color: #2c2c2c;
+      background: var(--price-bg);
+      padding: 4px 16px 4px 16px;
+      border-radius: 60px 10px 60px 10px;
+      border: 2px dashed var(--card-border);
+    }
+
+    .product-desc {
+      font-size: 15px;
+      color: #2c2c2c;
+      background: var(--desc-bg);
+      padding: 8px 16px;
+      border-radius: 30px 10px 30px 10px;
+      border-left: 6px solid var(--card-border);
+    }
+
+    /* ===== 详情页 ===== 颜色继承自选中产品的配色 */
+    .detail-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      background: var(--detail-header-bg);
+      padding: 12px 20px 12px 12px;
+      border-radius: 100px 20px 100px 20px;
+      border: 2px solid var(--card-border);
+    }
+
+    .back-btn {
+      width: 54px;
+      height: 54px;
+      background: var(--back-btn-bg);
+      border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      /* 后备深色，确保图标可见 */
+      color: var(--back-btn-icon, #2c2c2c);
+      cursor: pointer;
+      border: 3px solid white;
+      box-shadow: 4px 6px 0 var(--card-shadow);
+      transition: 0.1s;
+    }
+    /* 强制使用 remixicon 字体，确保图标显示 */
+    .back-btn i {
+      font-family: 'remixicon' !important;
+      speak: never;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      line-height: 1;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      display: inline-block;
+      font-size: inherit;
+    }
+    .back-btn:active {
+      transform: scale(0.95);
+      box-shadow: 2px 3px 0 var(--card-shadow);
+    }
+
+    .detail-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--detail-title, #5e4c3c);
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 0 var(--title-shadow, #e8d9cc);
+    }
+
+    .detail-image-area {
+      background: var(--detail-image-bg);
+      border-radius: 80px 20px 80px 20px;
+      padding: 16px;
+      margin-bottom: 28px;
+      border: 4px solid white;
+      box-shadow: 10px 14px 0 var(--card-shadow), 16px 18px 0 rgba(0,0,0,0.02);
+      transform: rotate(0.7deg);
+    }
+
+    .detail-image-area img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 60px 10px 60px 10px;
+      border: 2px solid #fff3e0;
+      display: block;
+    }
+
+    .detail-name-price {
+      background: var(--detail-name-bg);
+      border-radius: 40px 10px 40px 10px;
+      padding: 18px 22px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border: 2px solid var(--card-border);
+      box-shadow: 6px 8px 0 var(--card-shadow);
+    }
+
+    .detail-name {
+      font-size: 32px;
+      font-weight: 700;
+      color: #2c2c2c;
+      background: white;
+      padding: 4px 20px 4px 12px;
+      border-radius: 40px 0 20px 0;
+    }
+
+    .detail-price {
+      font-size: 40px;
+      font-weight: 700;
+      color: #2c2c2c;
+      background: var(--price-bg);
+      padding: 6px 24px 6px 24px;
+      border-radius: 80px 10px 80px 10px;
+      border: 3px dotted var(--card-border);
+    }
+
+    .desc-section {
+      background: var(--desc-section-bg);
+      border-radius: 30px 60px 30px 60px;
+      padding: 24px 28px;
+      margin-bottom: 28px;
+      border: 3px solid var(--card-border);
+      box-shadow: 10px 12px 0 var(--card-shadow);
+    }
+
+    .desc-label {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--desc-label, #7e6b5c);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--label-bg);
+      padding: 4px 16px 4px 12px;
+      border-radius: 30px 5px 30px 5px;
+      width: fit-content;
+    }
+
+    .desc-text {
+      font-size: 18px;
+      line-height: 1.7;
+      font-weight: 500;
+      color: #2c2c2c;
+      margin-bottom: 22px;
+      background: rgba(255,255,255,0.5);
+      padding: 16px 20px;
+      border-radius: 20px 40px 20px 40px;
+    }
+
+    .spec-tags {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .spec-tag {
+      background: var(--tag-bg);
+      border-radius: 40px 5px 40px 5px;
+      padding: 8px 24px;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c2c2c;
+      border: 2px solid white;
+      box-shadow: 3px 4px 0 var(--card-shadow);
+    }
+    .spec-tag i {
+      margin-right: 8px;
+      color: var(--tag-icon, #8b7a6b);
+      /* 确保标签内的图标也使用 remixicon 字体 */
+      font-family: 'remixicon' !important;
+      font-style: normal;
+    }
+
+    .video-section {
+      margin-top: 8px;
+    }
+
+    .video-label {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--video-label, #6b5c4e);
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--video-label-bg);
+      padding: 6px 20px 6px 14px;
+      border-radius: 100px 10px 100px 10px;
+      width: fit-content;
+    }
+    .video-label i {
+      font-size: 28px;
+      color: var(--video-icon, #8b7a6b);
+      font-family: 'remixicon' !important;
+    }
+
+    .video-wrapper {
+      border-radius: 50px 10px 50px 10px;
+      overflow: hidden;
+      border: 5px solid white;
+      box-shadow: 12px 16px 0 var(--card-shadow);
+      background: #000;
+      aspect-ratio: 16 / 9;
+    }
+
+    video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+    }
+
+    .bottom-filler {
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <!-- 列表页 -->
+    <div id="list-page" class="page">
+      <div class="header-title">泡泡雾</div>
+      <div class="product-list" id="product-list-container"></div>
+      <div class="bottom-filler"></div>
+    </div>
+
+    <!-- 详情页 -->
+    <div id="detail-page" class="page hidden">
+      <div class="detail-header">
+        <div class="back-btn" id="back-to-list">
+          <i class="ri-arrow-left-line"></i>
+        </div>
+        <div class="detail-title">泡泡·详情</div>
+      </div>
+
+      <div class="detail-image-area">
+        <img id="detail-image" src="" alt="电子烟实拍" onerror="handleImageError(this)">
+      </div>
+
+      <div class="detail-name-price">
+        <span id="detail-name" class="detail-name">霓虹·幻影</span>
+        <span id="detail-price" class="detail-price">¥299</span>
+      </div>
+
+      <div class="desc-section">
+        <div class="desc-label"><i class="ri-file-list-3-line"></i> 泡泡·描述</div>
+        <div id="detail-description" class="desc-text">
+          可调节气流，内置 1500mAh 电池，网状线圈，带来浓郁烟雾。
+        </div>
+        <div class="spec-tags">
+          <span class="spec-tag"><i class="ri-battery-charge-line"></i> 1500mAh</span>
+          <span class="spec-tag"><i class="ri-drop-line"></i> 2.0ml</span>
+          <span class="spec-tag"><i class="ri-flashlight-line"></i> 1.2Ω</span>
+        </div>
+      </div>
+
+      <div class="video-section">
+        <div class="video-label"><i class="ri-movie-2-line"></i> 泡泡·展示</div>
+        <div class="video-wrapper">
+          <video id="product-video" controls playsinline poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0e0d0'/%3E%3Ctext x='30' y='110' font-family='Quicksand' font-size='28' fill='%23a09080' font-weight='600'%3EPREVIEW%3C/text%3E%3C/svg%3E">
+            <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" type="video/mp4">
+            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4">
+          </video>
+        </div>
+      </div>
+      <div class="bottom-filler"></div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // 粉彩系孟菲斯配色生成函数（极低饱和度，高明度）
+      function generateMemphisPalette() {
+        const mainHue = Math.floor(Math.random() * 360);
+        // 饱和度 10-40，明度 75-95 → 非常淡雅
+        const mainS = 10 + Math.floor(Math.random() * 30); // 10-40
+        const mainL = 75 + Math.floor(Math.random() * 20); // 75-95
+        const mainColor = `hsl(${mainHue}, ${mainS}%, ${mainL}%)`;
+
+        // 辅色1：色相偏移 +40°，饱和度略低，明度略高
+        const secondaryHue = (mainHue + 40) % 360;
+        const secondaryS = Math.max(mainS - 5, 5);
+        const secondaryL = Math.min(mainL + 5, 98);
+        const secondaryColor = `hsl(${secondaryHue}, ${secondaryS}%, ${secondaryL}%)`;
+
+        // 辅色2：色相偏移 +120°，饱和度稍高，明度稍低
+        const accentHue = (mainHue + 120) % 360;
+        const accentS = Math.min(mainS + 5, 50);
+        const accentL = Math.max(mainL - 5, 70);
+        const accentColor = `hsl(${accentHue}, ${accentS}%, ${accentL}%)`;
+
+        // 边框色：主色加深，饱和度略高，明度降低
+        const borderS = Math.min(mainS + 10, 60);
+        const borderL = Math.max(mainL - 20, 60);
+        const borderColor = `hsl(${mainHue}, ${borderS}%, ${borderL}%)`;
+
+        // 阴影色：主色半透明
+        const shadowColor = `hsla(${mainHue}, ${mainS}%, ${mainL}%, 0.3)`;
+
+        // 描述背景：偏移 +60°，更低饱和度，更高明度
+        const descHue = (mainHue + 60) % 360;
+        const descS = Math.max(mainS - 10, 5);
+        const descL = Math.min(mainL + 10, 98);
+        const descBg = `hsl(${descHue}, ${descS}%, ${descL}%)`;
+
+        // 标签背景：偏移 +180°
+        const tagHue = (mainHue + 180) % 360;
+        const tagS = Math.max(mainS - 5, 5);
+        const tagL = Math.min(mainL + 5, 98);
+        const tagBg = `hsl(${tagHue}, ${tagS}%, ${tagL}%)`;
+
+        return {
+          mainColor,
+          secondaryColor,
+          accentColor,
+          borderColor,
+          shadowColor,
+          descBg,
+          tagBg
+        };
+      }
+
+      // 商品数据 - 6条
+      const products = [
+        {
+          id: 1,
+          name: "霓虹·幻影",
+          price: "¥299",
+          shortDesc: "2.0ml 烟仓 · 1000mAh · 1.2Ω",
+          description: "极简设计，2.0ml 烟油容量，内置 1000mAh 电池。亲肤涂层，防漏技术，配备 1.2Ω 网状线圈。",
+          image: "./1.jpg",
+          spec1: '1000mAh',
+          spec2: '2.0ml',
+          spec3: '1.2Ω'
+        },
+        {
+          id: 2,
+          name: "玄雾·iJUST 3",
+          price: "¥499",
+          shortDesc: "5ml 油仓 · 40W · Type-C",
+          description: "可调功率 5-40W，5ml 大油仓，支持 Type-C 快充。智能线圈识别，顺滑进气调节。",
+          image: "./2.jpg",
+          spec1: '40W',
+          spec2: '5ml',
+          spec3: 'Type-C'
+        },
+        {
+          id: 3,
+          name: "赤焰·CALIBURN",
+          price: "¥349",
+          shortDesc: "航空铝 · 震动感应 · 0.8Ω",
+          description: "顶级口感，可更换线圈(0.8Ω/1.2Ω)。双重泄压，航空铝机身，震动感应。",
+          image: "./3.jpg",
+          spec1: '震动',
+          spec2: '0.8Ω',
+          spec3: '航空铝'
+        },
+        {
+          id: 4,
+          name: "极光·S",
+          price: "¥399",
+          shortDesc: "6ml 烟仓 · 80W · 双线圈",
+          description: "极光系列旗舰款，6ml 超大油仓，支持 80W 输出，双网状线圈设计，带来极致烟雾体验。",
+          image: "./4.jpg",
+          spec1: '80W',
+          spec2: '6ml',
+          spec3: '双线圈'
+        },
+        {
+          id: 5,
+          name: "暗夜·PRO",
+          price: "¥599",
+          shortDesc: "碳纤维 · 2000mAh · 快充",
+          description: "暗夜系列专业版，碳纤维机身，2000mAh 大电池，支持 45W 快充，Type-C 接口。",
+          image: "./3.jpg",
+          spec1: '2000mAh',
+          spec2: '45W',
+          spec3: '碳纤维'
+        },
+        {
+          id: 6,
+          name: "星河·MINI",
+          price: "¥199",
+          shortDesc: "1.5ml · 800mAh · 便携",
+          description: "星河迷你款，超便携设计，1.5ml 烟仓，800mAh 电池，适合随身携带。",
+          image: "./2.jpg",
+          spec1: '800mAh',
+          spec2: '1.5ml',
+          spec3: '迷你'
+        }
+      ];
+
+      // 为每个产品生成柔和配色并存储
+      products.forEach(prod => {
+        prod.colors = generateMemphisPalette();
+      });
+
+      window.handleImageError = function(img) {
+        img.onerror = null;
+        const parent = img.parentNode;
+        const placeholder = document.createElement('div');
+        placeholder.className = 'img-error-placeholder';
+        placeholder.innerHTML = '<i class="ri-image-line"></i><span>图片加载失败</span>';
+        if (parent) {
+          parent.replaceChild(placeholder, img);
+        }
+      };
+
+      const listContainer = document.getElementById('product-list-container');
+      function renderList() {
+        listContainer.innerHTML = '';
+        products.forEach((prod) => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          card.dataset.id = prod.id;
+
+          const colors = prod.colors;
+          card.style.setProperty('--card-bg', colors.mainColor);
+          card.style.setProperty('--card-border', colors.borderColor);
+          card.style.setProperty('--card-shadow', colors.shadowColor);
+          card.style.setProperty('--name-bg', colors.secondaryColor);
+          card.style.setProperty('--price-bg', colors.accentColor);
+          card.style.setProperty('--desc-bg', colors.descBg);
+          card.style.setProperty('--tag-bg', colors.tagBg);
+
+          const imgDiv = document.createElement('div');
+          imgDiv.className = 'card-image';
+          const img = document.createElement('img');
+          img.src = prod.image;
+          img.alt = prod.name;
+          img.loading = 'lazy';
+          img.onerror = function() { handleImageError(this); };
+          imgDiv.appendChild(img);
+
+          const contentDiv = document.createElement('div');
+          contentDiv.className = 'card-content';
+          contentDiv.innerHTML = `
+            <div class="card-header">
+              <span class="product-name">${prod.name}</span>
+              <span class="product-price">${prod.price}</span>
+            </div>
+            <div class="product-desc">${prod.shortDesc}</div>
+          `;
+
+          card.appendChild(imgDiv);
+          card.appendChild(contentDiv);
+          listContainer.appendChild(card);
+
+          card.addEventListener('click', () => {
+            showDetail(prod);
+          });
+        });
+      }
+
+      const listPage = document.getElementById('list-page');
+      const detailPage = document.getElementById('detail-page');
+      const backBtn = document.getElementById('back-to-list');
+      let detailImage = document.getElementById('detail-image');
+      const detailName = document.getElementById('detail-name');
+      const detailPrice = document.getElementById('detail-price');
+      const detailDesc = document.getElementById('detail-description');
+      const videoElement = document.getElementById('product-video');
+      const specTagsContainer = document.querySelector('.spec-tags');
+
+      function showDetail(prod) {
+        const parent = detailImage.parentNode;
+        if (detailImage.tagName !== 'IMG') {
+          const newImg = document.createElement('img');
+          newImg.id = 'detail-image';
+          newImg.alt = '电子烟实拍';
+          newImg.onerror = function() { handleImageError(this); };
+          parent.replaceChild(newImg, detailImage);
+          detailImage = newImg;
+        }
+        detailImage.src = prod.image;
+        detailName.textContent = prod.name;
+        detailPrice.textContent = prod.price;
+        detailDesc.textContent = prod.description;
+
+        const colors = prod.colors;
+        detailPage.style.setProperty('--card-border', colors.borderColor);
+        detailPage.style.setProperty('--card-shadow', colors.shadowColor);
+        detailPage.style.setProperty('--price-bg', colors.accentColor);
+        detailPage.style.setProperty('--detail-header-bg', colors.secondaryColor);
+        detailPage.style.setProperty('--back-btn-bg', colors.mainColor);
+        detailPage.style.setProperty('--back-btn-icon', colors.borderColor);
+        detailPage.style.setProperty('--detail-title', colors.borderColor);
+        detailPage.style.setProperty('--title-shadow', colors.secondaryColor);
+        detailPage.style.setProperty('--detail-image-bg', colors.descBg);
+        detailPage.style.setProperty('--detail-name-bg', colors.mainColor);
+        detailPage.style.setProperty('--desc-section-bg', colors.descBg);
+        detailPage.style.setProperty('--desc-label', colors.borderColor);
+        detailPage.style.setProperty('--label-bg', colors.secondaryColor);
+        detailPage.style.setProperty('--tag-bg', colors.tagBg);
+        detailPage.style.setProperty('--tag-icon', colors.borderColor);
+        detailPage.style.setProperty('--video-label', colors.borderColor);
+        detailPage.style.setProperty('--video-label-bg', colors.secondaryColor);
+        detailPage.style.setProperty('--video-icon', colors.borderColor);
+
+        if (specTagsContainer) {
+          const tags = specTagsContainer.querySelectorAll('.spec-tag');
+          if (tags.length >= 3) {
+            tags[0].innerHTML = `<i class="ri-battery-charge-line"></i> ${prod.spec1 || '—'}`;
+            tags[1].innerHTML = `<i class="ri-drop-line"></i> ${prod.spec2 || '—'}`;
+            tags[2].innerHTML = `<i class="ri-flashlight-line"></i> ${prod.spec3 || '—'}`;
+          }
+        }
+
+        listPage.classList.add('hidden');
+        detailPage.classList.remove('hidden');
+      }
+
+      backBtn.addEventListener('click', () => {
+        detailPage.classList.add('hidden');
+        listPage.classList.remove('hidden');
+        videoElement.pause();
+        videoElement.currentTime = 0;
+      });
+
+      renderList();
+      videoElement.load();
+    })();
+  </script>
+</body>
+</html>
