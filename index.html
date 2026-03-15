@@ -3,17 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>泡泡雾 · 电子烟</title>
+  <title>Cuteuu9 · 电子烟</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <!-- 多个 Remix Icon CDN 源以确保加载成功 -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
-  <!-- 备用：如果上面失败，使用静态CDN -->
-  <link rel="stylesheet" href="https://cdn.staticfile.org/remixicon/4.2.0/remixicon.css">
   <style>
-    /* 完全保留孟菲斯风格的样式，不做任何简化 */
     * {
       margin: 0;
       padding: 0;
@@ -21,38 +16,12 @@
     }
 
     body {
-      font-family: 'Quicksand', sans-serif;
-      background: #f0eae3;
-      color: #2c2c2c;
+      font-family: 'Inter', sans-serif;
+      background: #f5f7fa;
+      color: #1e2b34;
       width: 100%;
       height: 100vh;
       overflow: hidden;
-      position: relative;
-    }
-
-    body::before {
-      content: '';
-      position: fixed;
-      width: 300px;
-      height: 300px;
-      background: rgba(210, 190, 170, 0.15);
-      border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
-      top: -50px;
-      right: -80px;
-      z-index: 0;
-      filter: blur(20px);
-    }
-    body::after {
-      content: '';
-      position: fixed;
-      width: 400px;
-      height: 400px;
-      background: rgba(160, 190, 210, 0.1);
-      border-radius: 70% 30% 50% 50% / 30% 60% 40% 70%;
-      bottom: -100px;
-      left: -100px;
-      z-index: 0;
-      filter: blur(30px);
     }
 
     .app {
@@ -60,18 +29,16 @@
       height: 100%;
       display: flex;
       flex-direction: column;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
+      background: #f5f7fa;
     }
 
     .page {
       width: 100%;
       height: 100%;
       overflow-y: auto;
-      padding: 24px 18px 20px 18px;
+      padding: 20px 16px 16px 16px;
       scrollbar-width: thin;
-      scrollbar-color: #c0b0a0 #ede0d5;
+      scrollbar-color: #cbd5e0 #edf2f7;
     }
 
     .page.hidden {
@@ -79,88 +46,56 @@
     }
 
     .page::-webkit-scrollbar {
-      width: 6px;
+      width: 4px;
     }
     .page::-webkit-scrollbar-track {
-      background: #ede0d5;
-      border-radius: 20px;
+      background: #edf2f7;
     }
     .page::-webkit-scrollbar-thumb {
-      background: #c0b0a0;
-      border-radius: 20px;
+      background: #cbd5e0;
+      border-radius: 8px;
     }
 
     /* ===== 列表页头部 ===== */
     .header-title {
-      font-size: 48px;
-      font-weight: 700;
-      color: #5b4e44;
-      line-height: 1;
+      font-size: 28px;
+      font-weight: 300;
+      letter-spacing: 1px;
       margin-bottom: 20px;
-      position: relative;
-      display: inline-block;
-      letter-spacing: -1px;
-      text-shadow: 6px 6px 0 #e8d9cc, 8px 8px 0 rgba(0,0,0,0.02);
-    }
-    .header-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 16px;
-      background: repeating-linear-gradient(45deg, #ddcbb8, #ddcbb8 8px, #eeddcc 8px, #eeddcc 16px);
-      border-radius: 20px;
-      z-index: -1;
-      opacity: 0.4;
+      color: #2d3f4b;
+      border-bottom: 1px solid #e2e8f0;
+      padding-bottom: 12px;
     }
 
-    /* ===== 列表卡片 ===== 颜色由CSS变量动态控制 */
-    .product-list {
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
+    /* ===== 双列网格 ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
     .product-card {
-      background: var(--card-bg);
-      border-radius: 60px 30px 60px 30px;
-      padding: 20px 20px 24px 20px;
-      box-shadow: 12px 12px 0 var(--card-shadow), 16px 16px 0 rgba(0,0,0,0.02);
-      border: 2px solid var(--card-border);
-      transform: rotate(-0.5deg);
-      transition: all 0.2s ease;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      transition: transform 0.15s ease, box-shadow 0.15s;
+      border: 1px solid #edf2f7;
+      cursor: pointer;
     }
 
-    .product-card:nth-child(2) {
-      border-radius: 30px 60px 30px 60px;
-      transform: rotate(0.8deg);
-    }
-    .product-card:nth-child(3) {
-      border-radius: 80px 20px 80px 20px;
-      transform: rotate(-1deg);
-    }
-    .product-card:nth-child(4) {
-      border-radius: 40px 80px 40px 80px;
-      transform: rotate(0.3deg);
-    }
-    .product-card:nth-child(5) {
-      border-radius: 70px 30px 70px 30px;
-      transform: rotate(-0.7deg);
-    }
-    .product-card:nth-child(6) {
-      border-radius: 50px 70px 50px 70px;
-      transform: rotate(1deg);
+    .product-card:active {
+      transform: scale(0.98);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
     }
 
     .card-image {
       width: 100%;
       aspect-ratio: 1 / 1;
-      border-radius: 50% 30% 50% 30% / 40% 50% 40% 50%;
+      background: #f0f4f8;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 16px;
-      border: 4px solid white;
-      box-shadow: 0 0 0 2px var(--card-border), 0 10px 20px rgba(0,0,0,0.05);
+      margin-bottom: 12px;
     }
 
     .card-image img {
@@ -176,258 +111,442 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f0e0d0;
-      color: #a09080;
-      font-size: 16px;
+      background: #f0f4f8;
+      color: #8f9eb5;
+      font-size: 12px;
       flex-direction: column;
-      gap: 8px;
-    }
-
-    .card-content {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      flex-wrap: wrap;
+      gap: 4px;
     }
 
     .product-name {
-      font-size: 24px;
-      font-weight: 700;
-      color: #2c2c2c;
-      background: var(--name-bg);
-      padding: 0 12px 0 6px;
-      border-radius: 40px 0 20px 0;
+      font-size: 16px;
+      font-weight: 600;
+      color: #1e2b34;
+      margin-bottom: 4px;
       line-height: 1.3;
     }
 
     .product-price {
-      font-size: 28px;
-      font-weight: 700;
-      color: #2c2c2c;
-      background: var(--price-bg);
-      padding: 4px 16px 4px 16px;
-      border-radius: 60px 10px 60px 10px;
-      border: 2px dashed var(--card-border);
+      font-size: 18px;
+      font-weight: 500;
+      color: #2c6b8f;
+      margin-bottom: 6px;
     }
 
     .product-desc {
-      font-size: 15px;
-      color: #2c2c2c;
-      background: var(--desc-bg);
-      padding: 8px 16px;
-      border-radius: 30px 10px 30px 10px;
-      border-left: 6px solid var(--card-border);
+      font-size: 12px;
+      color: #6f7e8c;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
-    /* ===== 详情页 ===== 颜色继承自选中产品的配色 */
+    /* ===== 详情页 ===== */
     .detail-header {
       display: flex;
       align-items: center;
       gap: 16px;
-      margin-bottom: 28px;
-      background: var(--detail-header-bg);
-      padding: 12px 20px 12px 12px;
-      border-radius: 100px 20px 100px 20px;
-      border: 2px solid var(--card-border);
+      margin-bottom: 16px;
     }
 
     .back-btn {
-      width: 54px;
-      height: 54px;
-      background: var(--back-btn-bg);
-      border-radius: 40% 60% 40% 60% / 50% 40% 60% 50%;
+      width: 40px;
+      height: 40px;
+      background: #ffffff;
+      border-radius: 20px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
-      /* 后备深色，确保图标可见 */
-      color: var(--back-btn-icon, #2c2c2c);
+      font-size: 22px;
+      color: #2d3f4b;
       cursor: pointer;
-      border: 3px solid white;
-      box-shadow: 4px 6px 0 var(--card-shadow);
-      transition: 0.1s;
-    }
-    /* 强制使用 remixicon 字体，确保图标显示 */
-    .back-btn i {
-      font-family: 'remixicon' !important;
-      speak: never;
-      font-style: normal;
-      font-weight: normal;
-      font-variant: normal;
-      text-transform: none;
-      line-height: 1;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      display: inline-block;
-      font-size: inherit;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e2e8f0;
+      transition: background 0.2s;
     }
     .back-btn:active {
-      transform: scale(0.95);
-      box-shadow: 2px 3px 0 var(--card-shadow);
+      background: #f7fafc;
     }
 
     .detail-title {
-      font-size: 36px;
-      font-weight: 700;
-      color: var(--detail-title, #5e4c3c);
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 0 var(--title-shadow, #e8d9cc);
+      font-size: 22px;
+      font-weight: 300;
+      letter-spacing: 1px;
+      color: #2d3f4b;
     }
 
-    .detail-image-area {
-      background: var(--detail-image-bg);
-      border-radius: 80px 20px 80px 20px;
-      padding: 16px;
-      margin-bottom: 28px;
-      border: 4px solid white;
-      box-shadow: 10px 14px 0 var(--card-shadow), 16px 18px 0 rgba(0,0,0,0.02);
-      transform: rotate(0.7deg);
+    /* 轮播图（无箭头） */
+    .detail-carousel {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 12px;
+      margin-bottom: 20px;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      position: relative;
     }
 
-    .detail-image-area img {
+    .carousel-container {
+      position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      touch-action: pan-y pinch-zoom;
+    }
+
+    .carousel-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+
+    .carousel-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      background: #f0f4f8;
+      cursor: pointer; /* 点击放大预览 */
+    }
+
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
-      border-radius: 60px 10px 60px 10px;
-      border: 2px solid #fff3e0;
       display: block;
+    }
+
+    .carousel-dots {
+      position: absolute;
+      bottom: 12px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 5;
+    }
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .carousel-dot.active {
+      background: #2c6b8f;
+      transform: scale(1.2);
     }
 
     .detail-name-price {
-      background: var(--detail-name-bg);
-      border-radius: 40px 10px 40px 10px;
-      padding: 18px 22px;
-      margin-bottom: 28px;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border: 2px solid var(--card-border);
-      box-shadow: 6px 8px 0 var(--card-shadow);
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
     }
 
     .detail-name {
-      font-size: 32px;
-      font-weight: 700;
-      color: #2c2c2c;
-      background: white;
-      padding: 4px 20px 4px 12px;
-      border-radius: 40px 0 20px 0;
+      font-size: 22px;
+      font-weight: 500;
+      color: #1e2b34;
     }
 
     .detail-price {
-      font-size: 40px;
-      font-weight: 700;
-      color: #2c2c2c;
-      background: var(--price-bg);
-      padding: 6px 24px 6px 24px;
-      border-radius: 80px 10px 80px 10px;
-      border: 3px dotted var(--card-border);
+      font-size: 24px;
+      font-weight: 500;
+      color: #2c6b8f;
     }
 
     .desc-section {
-      background: var(--desc-section-bg);
-      border-radius: 30px 60px 30px 60px;
-      padding: 24px 28px;
-      margin-bottom: 28px;
-      border: 3px solid var(--card-border);
-      box-shadow: 10px 12px 0 var(--card-shadow);
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
     }
 
     .desc-label {
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--desc-label, #7e6b5c);
-      margin-bottom: 12px;
+      font-size: 14px;
+      font-weight: 400;
+      color: #6f7e8c;
+      margin-bottom: 10px;
       display: flex;
       align-items: center;
-      gap: 8px;
-      background: var(--label-bg);
-      padding: 4px 16px 4px 12px;
-      border-radius: 30px 5px 30px 5px;
-      width: fit-content;
+      gap: 6px;
+    }
+    .desc-label i {
+      font-size: 16px;
+      color: #9aa9b7;
     }
 
     .desc-text {
-      font-size: 18px;
-      line-height: 1.7;
-      font-weight: 500;
-      color: #2c2c2c;
-      margin-bottom: 22px;
-      background: rgba(255,255,255,0.5);
-      padding: 16px 20px;
-      border-radius: 20px 40px 20px 40px;
+      font-size: 16px;
+      line-height: 1.6;
+      font-weight: 300;
+      color: #1e2b34;
+      margin-bottom: 16px;
     }
 
+    /* 规格标签（无图标） */
     .spec-tags {
       display: flex;
-      gap: 14px;
+      gap: 8px;
       flex-wrap: wrap;
+      margin-top: 8px;
     }
     .spec-tag {
-      background: var(--tag-bg);
-      border-radius: 40px 5px 40px 5px;
-      padding: 8px 24px;
-      font-size: 16px;
-      font-weight: 600;
-      color: #2c2c2c;
-      border: 2px solid white;
-      box-shadow: 3px 4px 0 var(--card-shadow);
-    }
-    .spec-tag i {
-      margin-right: 8px;
-      color: var(--tag-icon, #8b7a6b);
-      /* 确保标签内的图标也使用 remixicon 字体 */
-      font-family: 'remixicon' !important;
-      font-style: normal;
+      background: #f0f4f8;
+      border-radius: 20px;
+      padding: 5px 16px;
+      font-size: 13px;
+      color: #3e5364;
+      border: 1px solid #e2e8f0;
+      display: inline-flex;
+      align-items: center;
     }
 
+    /* 视频模块 */
     .video-section {
-      margin-top: 8px;
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+    .video-section.hidden {
+      display: none;
     }
 
     .video-label {
-      font-size: 20px;
-      font-weight: 600;
-      color: var(--video-label, #6b5c4e);
-      margin-bottom: 18px;
+      font-size: 16px;
+      font-weight: 400;
+      color: #3e5364;
+      margin-bottom: 14px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: var(--video-label-bg);
-      padding: 6px 20px 6px 14px;
-      border-radius: 100px 10px 100px 10px;
-      width: fit-content;
+      gap: 8px;
     }
     .video-label i {
-      font-size: 28px;
-      color: var(--video-icon, #8b7a6b);
-      font-family: 'remixicon' !important;
+      font-size: 18px;
+      color: #9aa9b7;
     }
 
-    .video-wrapper {
-      border-radius: 50px 10px 50px 10px;
-      overflow: hidden;
-      border: 5px solid white;
-      box-shadow: 12px 16px 0 var(--card-shadow);
-      background: #000;
+    .video-single {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 12px;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+    }
+
+    .video-single video {
+      width: 100%;
       aspect-ratio: 16 / 9;
+      object-fit: cover;
+      border-radius: 12px;
+      display: block;
     }
 
-    video {
+    .video-carousel-container {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 12px;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+      position: relative;
+    }
+
+    .video-carousel-slides {
+      display: flex;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .video-carousel-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      background: #f0f4f8;
+    }
+
+    .video-carousel-slide video {
       width: 100%;
       height: 100%;
-      display: block;
       object-fit: cover;
+      display: block;
+    }
+
+    .video-carousel-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 36px;
+      height: 36px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #1e2b34;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border: 1px solid #e2e8f0;
+      z-index: 5;
+    }
+    .video-carousel-arrow.left {
+      left: 20px;
+    }
+    .video-carousel-arrow.right {
+      right: 20px;
+    }
+
+    .video-carousel-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 5;
+    }
+    .video-carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.6);
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+    }
+    .video-carousel-dot.active {
+      background: #2c6b8f;
+      transform: scale(1.2);
+    }
+
+    /* 图片预览模态框 */
+    .preview-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+    }
+    .preview-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .preview-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      z-index: 1001;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .preview-close:active {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    .preview-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preview-slides {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.3s ease;
+    }
+    .preview-slide {
+      flex: 0 0 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .preview-slide img {
+      max-width: 90%;
+      max-height: 90%;
+      object-fit: contain;
+    }
+    .preview-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: white;
+      cursor: pointer;
+      z-index: 1002;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+    .preview-arrow.left {
+      left: 20px;
+    }
+    .preview-arrow.right {
+      right: 20px;
+    }
+    .preview-dots {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      z-index: 1002;
+    }
+    .preview-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+    }
+    .preview-dot.active {
+      background: white;
+      transform: scale(1.2);
     }
 
     .bottom-filler {
-      height: 20px;
+      height: 16px;
     }
   </style>
 </head>
@@ -435,8 +554,8 @@
   <div class="app">
     <!-- 列表页 -->
     <div id="list-page" class="page">
-      <div class="header-title">泡泡雾</div>
-      <div class="product-list" id="product-list-container"></div>
+      <div class="header-title">Cuteuu9 · 电子烟</div>
+      <div class="product-grid" id="product-grid-container"></div>
       <div class="bottom-filler"></div>
     </div>
 
@@ -446,11 +565,15 @@
         <div class="back-btn" id="back-to-list">
           <i class="ri-arrow-left-line"></i>
         </div>
-        <div class="detail-title">泡泡·详情</div>
+        <div class="detail-title">产品详情</div>
       </div>
 
-      <div class="detail-image-area">
-        <img id="detail-image" src="" alt="电子烟实拍" onerror="handleImageError(this)">
+      <!-- 轮播图区域（无箭头） -->
+      <div class="detail-carousel">
+        <div class="carousel-container" id="carousel-container">
+          <div class="carousel-slides" id="carousel-slides"></div>
+          <div class="carousel-dots" id="carousel-dots"></div>
+        </div>
       </div>
 
       <div class="detail-name-price">
@@ -459,158 +582,313 @@
       </div>
 
       <div class="desc-section">
-        <div class="desc-label"><i class="ri-file-list-3-line"></i> 泡泡·描述</div>
+        <div class="desc-label"><i class="ri-file-list-3-line"></i> 描述</div>
         <div id="detail-description" class="desc-text">
           可调节气流，内置 1500mAh 电池，网状线圈，带来浓郁烟雾。
         </div>
-        <div class="spec-tags">
-          <span class="spec-tag"><i class="ri-battery-charge-line"></i> 1500mAh</span>
-          <span class="spec-tag"><i class="ri-drop-line"></i> 2.0ml</span>
-          <span class="spec-tag"><i class="ri-flashlight-line"></i> 1.2Ω</span>
-        </div>
+        <!-- 规格标签动态生成区域（无图标） -->
+        <div id="spec-tags" class="spec-tags"></div>
       </div>
 
-      <div class="video-section">
-        <div class="video-label"><i class="ri-movie-2-line"></i> 泡泡·展示</div>
-        <div class="video-wrapper">
-          <video id="product-video" controls playsinline poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0e0d0'/%3E%3Ctext x='30' y='110' font-family='Quicksand' font-size='28' fill='%23a09080' font-weight='600'%3EPREVIEW%3C/text%3E%3C/svg%3E">
-            <source src="https://test-videos.co.uk/vids/bigbuckbunny/mp4/h264/1080/Big_Buck_Bunny_1080_10s_1MB.mp4" type="video/mp4">
-            <source src="https://cdn.plyr.io/static/demo/View_From_A_Blue_Moon_Trailer-576p.mp4" type="video/mp4">
-          </video>
-        </div>
+      <!-- 视频模块 -->
+      <div id="video-section" class="video-section hidden">
+        <div class="video-label"><i class="ri-movie-2-line"></i> 实拍展示</div>
+        <div id="video-container"></div>
       </div>
+
       <div class="bottom-filler"></div>
+    </div>
+
+    <!-- 图片预览模态框 -->
+    <div id="preview-modal" class="preview-modal">
+      <div class="preview-close" id="preview-close"><i class="ri-close-line"></i></div>
+      <div class="preview-container">
+        <div class="preview-slides" id="preview-slides"></div>
+        <div class="preview-arrow left" id="preview-prev"><i class="ri-arrow-left-s-line"></i></div>
+        <div class="preview-arrow right" id="preview-next"><i class="ri-arrow-right-s-line"></i></div>
+        <div class="preview-dots" id="preview-dots"></div>
+      </div>
     </div>
   </div>
 
   <script>
     (function() {
-      // 粉彩系孟菲斯配色生成函数（极低饱和度，高明度）
-      function generateMemphisPalette() {
-        const mainHue = Math.floor(Math.random() * 360);
-        // 饱和度 10-40，明度 75-95 → 非常淡雅
-        const mainS = 10 + Math.floor(Math.random() * 30); // 10-40
-        const mainL = 75 + Math.floor(Math.random() * 20); // 75-95
-        const mainColor = `hsl(${mainHue}, ${mainS}%, ${mainL}%)`;
-
-        // 辅色1：色相偏移 +40°，饱和度略低，明度略高
-        const secondaryHue = (mainHue + 40) % 360;
-        const secondaryS = Math.max(mainS - 5, 5);
-        const secondaryL = Math.min(mainL + 5, 98);
-        const secondaryColor = `hsl(${secondaryHue}, ${secondaryS}%, ${secondaryL}%)`;
-
-        // 辅色2：色相偏移 +120°，饱和度稍高，明度稍低
-        const accentHue = (mainHue + 120) % 360;
-        const accentS = Math.min(mainS + 5, 50);
-        const accentL = Math.max(mainL - 5, 70);
-        const accentColor = `hsl(${accentHue}, ${accentS}%, ${accentL}%)`;
-
-        // 边框色：主色加深，饱和度略高，明度降低
-        const borderS = Math.min(mainS + 10, 60);
-        const borderL = Math.max(mainL - 20, 60);
-        const borderColor = `hsl(${mainHue}, ${borderS}%, ${borderL}%)`;
-
-        // 阴影色：主色半透明
-        const shadowColor = `hsla(${mainHue}, ${mainS}%, ${mainL}%, 0.3)`;
-
-        // 描述背景：偏移 +60°，更低饱和度，更高明度
-        const descHue = (mainHue + 60) % 360;
-        const descS = Math.max(mainS - 10, 5);
-        const descL = Math.min(mainL + 10, 98);
-        const descBg = `hsl(${descHue}, ${descS}%, ${descL}%)`;
-
-        // 标签背景：偏移 +180°
-        const tagHue = (mainHue + 180) % 360;
-        const tagS = Math.max(mainS - 5, 5);
-        const tagL = Math.min(mainL + 5, 98);
-        const tagBg = `hsl(${tagHue}, ${tagS}%, ${tagL}%)`;
-
-        return {
-          mainColor,
-          secondaryColor,
-          accentColor,
-          borderColor,
-          shadowColor,
-          descBg,
-          tagBg
-        };
-      }
-
-      // 商品数据 - 6条
+      // 商品数据
       const products = [
         {
           id: 1,
-          name: "霓虹·幻影",
-          price: "¥299",
-          shortDesc: "2.0ml 烟仓 · 1000mAh · 1.2Ω",
-          description: "极简设计，2.0ml 烟油容量，内置 1000mAh 电池。亲肤涂层，防漏技术，配备 1.2Ω 网状线圈。",
-          image: "./1.jpg",
-          spec1: '1000mAh',
-          spec2: '2.0ml',
-          spec3: '1.2Ω'
+          name: "冰爆",
+          price: "¥108",
+          shortDesc: "",
+          description: "奇异果爆珠，桂花乌龙，龙井，柠檬菠萝，迈阿密薄荷，绿豆冰，番石榴，青苹果，新鲜柠檬，茉莉奶茶，矿泉水，宝矿力，特别推荐新口味： 迈阿密薄荷（口感超好，销量第一）其它口味在途",
+          image: "./img/1/1.jpg",
+          carousel: [
+            "./img/1/1.jpg",
+            "./img/1/2.jpg",
+          ],
+          // 多个视频
+          videos: [],
+          spec1: '',
+          spec2: '',
+          spec3: ''
         },
         {
           id: 2,
-          name: "玄雾·iJUST 3",
-          price: "¥499",
-          shortDesc: "5ml 油仓 · 40W · Type-C",
-          description: "可调功率 5-40W，5ml 大油仓，支持 Type-C 快充。智能线圈识别，顺滑进气调节。",
-          image: "./2.jpg",
-          spec1: '40W',
-          spec2: '5ml',
-          spec3: 'Type-C'
+          name: "SnowPlusDash鸭嘴兽",
+          price: "¥98",
+          shortDesc: "",
+          description: "酸甜葡萄，绿豆，抹茶沙冰，青苹果，荔枝，西瓜冰，老冰棍，桃子冰，甜哈密瓜，西柚百香果，火龙果，青柠檬冰，可乐，柠檬菠萝，椰子，茉莉花茶，芭乐番石榴，矿泉水，洛神花茶，红酒冰 ，金汤利，气泡冰柠檬茶，芋头冰，青葡萄，玉米冰淇淋，薄荷，龙井冰茶特别推荐新口味：青葡萄（口感超好，销量第一）其它口味在途",
+          image: "./img/2/2.jpg",
+          carousel: [
+            "./img/2/1.jpg",
+            "./img/2/2.jpg",
+            "./img/2/3.jpg"
+          ],
+          // 单个视频
+          videos: [],
+          spec1: '',
+          spec2: '',
+          spec3: ''
         },
         {
           id: 3,
-          name: "赤焰·CALIBURN",
-          price: "¥349",
-          shortDesc: "航空铝 · 震动感应 · 0.8Ω",
-          description: "顶级口感，可更换线圈(0.8Ω/1.2Ω)。双重泄压，航空铝机身，震动感应。",
-          image: "./3.jpg",
-          spec1: '震动',
-          spec2: '0.8Ω',
-          spec3: '航空铝'
+          name: "小黑条",
+          price: "¥78",
+          shortDesc: "",
+          description: "冰可乐柠檬， 荔枝，青芒果，桃子，哈密瓜，青提，青苹果，百香果，椰子冰，绿豆，薄荷，蓝莓，菠萝，西瓜，矿泉水，奶酪，龙眼，雪碧，爆米花，猕猴桃特别推荐新口味：椰子冰（口感超好，销量第一）其它口味在途",
+          image: "./img/3/2.jpg",
+          carousel: [
+            "./img/3/1.jpg",
+            "./img/3/2.jpg",
+            "./img/3/3.jpg"
+          ],
+          // 无视频
+          videos: [],
+          spec1: '',
+          spec2: '',
+          spec3: ''
         },
         {
           id: 4,
-          name: "极光·S",
-          price: "¥399",
-          shortDesc: "6ml 烟仓 · 80W · 双线圈",
-          description: "极光系列旗舰款，6ml 超大油仓，支持 80W 输出，双网状线圈设计，带来极致烟雾体验。",
-          image: "./4.jpg",
-          spec1: '80W',
-          spec2: '6ml',
-          spec3: '双线圈'
+          name: "阿尔法",
+          price: "¥155",
+          shortDesc: "12w · 带水声",
+          description: "樱桃狂欢节，莓果冰，果酱薄荷，清醒之梦：（橘子味道），魔法之爱，柠檬薄荷，甜百香果，口香糖薄荷，芒果冰，蓝莓柠檬水，桃子冰特别推荐口味：清醒之梦（口感超好，销量第一）其它口味在途",
+          image: "./img/4/2.jpg",
+          carousel: [
+            "./img/4/1.jpg",
+            "./img/4/2.jpg",
+          ],
+          videos: [],
+          spec1: '12w',
+          spec2: '带水声',
         },
         {
           id: 5,
-          name: "暗夜·PRO",
-          price: "¥599",
-          shortDesc: "碳纤维 · 2000mAh · 快充",
-          description: "暗夜系列专业版，碳纤维机身，2000mAh 大电池，支持 45W 快充，Type-C 接口。",
-          image: "./3.jpg",
-          spec1: '2000mAh',
-          spec2: '45W',
-          spec3: '碳纤维'
+          name: "巴博",
+          price: "¥208",
+          shortDesc: "",
+          description: "芒果汁，柠檬汽水，黑加仑薄荷，芦荟葡萄，冰苔原梅，冰薄荷，甜薄荷 特别推荐新口味：芒果汁（口感超好，销量第一）其它口味在途",
+          image: "./img/5/2.jpg",
+          carousel: [
+            "./img/5/1.jpg",
+            "./img/5/2.jpg",
+            "./img/5/3.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '',
+          spec2: '',
+          spec3: ''
         },
         {
           id: 6,
-          name: "星河·MINI",
-          price: "¥199",
-          shortDesc: "1.5ml · 800mAh · 便携",
-          description: "星河迷你款，超便携设计，1.5ml 烟仓，800mAh 电池，适合随身携带。",
-          image: "./2.jpg",
-          spec1: '800mAh',
-          spec2: '1.5ml',
-          spec3: '迷你'
-        }
+          name: "王嘉尔同款冰神",
+          price: "¥178",
+          shortDesc: "",
+          description: "菠萝椰子，葡萄樱桃，草莓猕猴桃，茉莉绿茶，迈阿密浓薄荷，西瓜，菠萝，宝矿力，蓝莓，桃子冰，柠檬，青提，苹果",
+          image: "./img/6/3.jpg",
+          carousel: [
+            "./img/6/1.jpg",
+            "./img/6/2.jpg",
+            "./img/6/3.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '',
+          spec2: '',
+          spec3: ''
+        },
+        {
+          id: 7,
+          name: "6代外贸杆",
+          price: "¥138",
+          shortDesc: "换弹区🥚",
+          description: "樱花粉（粉色），黑曜石（黑色），蓝湾（蓝色），绿色海军（绿色），皇家靛蓝（紫色），黑暗小行星（灰色），珍珠闪白（白色） 特别推荐颜色：皇家靛蓝（紫色）",
+          image: "./img/7/2.jpg",
+          carousel: [
+            "./img/7/1.jpg",
+            "./img/7/2.jpg",
+            "./img/7/3.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '换弹区🥚',
+          spec2: '',
+          spec3: ''
+        },
+        {
+          id: 8,
+          name: "悦刻五代全码杆",
+          price: "¥128",
+          shortDesc: "",
+          description: "零度逐霜，皎月银，晨霜绿，赤焰橘，石墨黑蓝焰星光，星河映月，金慕霞光，绮境碧光，鸢尾蓝 特别推荐颜色：晨霜绿",
+          image: "./img/8/1.jpg",
+          carousel: [
+            "./img/8/1.jpg",
+            "./img/8/2.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '',
+          spec2: '',
+          spec3: ''
+        },
+        {
+          id: 9,
+          name: "美版冰熊3颗装",
+          price: "¥98",
+          shortDesc: "一盒三个 · 适配兼容四五六代",
+          description: "山泉水，柠檬，龙眼冰，薄荷，可乐，芒果，柠檬茶，番石榴，冰咖啡，葡萄，绿豆，冰棒，情人百香果甜心，香芋冰淇淋，香桃冰，西瓜，梅果，荔枝，菠萝橙子，草莓冰淇淋 特别推荐新口味：草莓冰淇淋（口感超好，销量第一）其它口味在途",
+          image: "./img/9/1.jpg",
+          carousel: [
+            "./img/9/1.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '一盒三个',
+          spec2: '适配兼容四五六代',
+          spec3: ''
+        },
+        {
+          id: 10,
+          name: "ub原装🥚",
+          price: "¥188",
+          shortDesc: "一盒三个 · 适配兼容四五六代",
+          description: "草莓雪冰，C味鲜橙 ，冰魄蓝莓烟，桃气乌龙，雪碧，冰红茶，老冰棍儿，手打柠檬冰，微醺莫吉托，酸奶，爽薄荷，橘子汽水，冰萃咖啡，冰柠薄荷，可乐冰，草莓雪冰，一颗西梅，热情番石榴，香芋冰淇淋 特别推荐新口味:可乐冰（口感超好，销量第一）其它口味在途",
+          image: "./img/10/2.jpg",
+          carousel: [
+            "./img/10/1.jpg",
+            "./img/10/2.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '一盒三个',
+          spec2: '适配兼容四五六代',
+          spec3: ''
+        },
+        {
+          id: 11,
+          name: "马龙克罗心",
+          price: "¥275",
+          shortDesc: "三模式切换",
+          description: "五个颜色 每个都颜值超高，一面磨砂质感，一面镜面 女生无需考虑直接冲荔枝味！替大家试过了！ 粉色荔枝、桃子 银色薄荷、苹果 紫色蓝莓、李子 金色可乐、菠萝 绿色哈密瓜、青提",
+          image: "./img/11/3.jpg",
+          carousel: [
+            "./img/11/1.jpg",
+            "./img/11/2.jpg",
+            "./img/11/3.jpg",
+          ],
+          videos: [], // 无视频
+          spec1: '三模式切换',
+          spec2: '',
+          spec3: ''
+        },
+        {
+          id: 12,
+          name: "冰神一代",
+          price: "¥275",
+          shortDesc: "",
+          description: "一代冰神。 三万口。 现在有四万口的冰神了。韩版拿货贵",
+          image: "./img/12/3.jpg",
+          carousel: [
+            "./img/12/1.jpg",
+            "./img/12/2.jpg",
+            "./img/12/3.jpg",
+          ],
+          videos: ["./img/12/1.mp4"], // 无视频
+          spec1: '',
+          spec2: '',
+          spec3: ''
+        },
+        {
+          id: 13,
+          name: "积木二代",
+          price: "套装¥285 · 蛋¥195",
+          shortDesc: "可换单 · 有显示屏 · 可打游戏 · 2.5w",
+          description: "可以换蛋 有显示屏 可打游戏 2.5w口 多巴胺设计很可爱",
+          image: "./img/13/1.jpg",
+          carousel: [
+            "./img/13/1.jpg",
+            "./img/13/2.jpg",
+          ],
+          videos: ["./img/13/1.mp4","./img/13/2.mp4"], // 无视频
+          spec1: '可换单',
+          spec2: '有显示屏',
+          spec3: '2.5w',
+        },
+        {
+          id: 14,
+          name: "巴博一代 · 炫彩",
+          price: "¥305",
+          shortDesc: "3.5w",
+          description: "炫彩一代 一次性dzy 用完就没有了 3.5w口 很漂亮 口感很好",
+          image: "./img/14/4.jpg",
+          carousel: [
+            "./img/14/1.jpg",
+            "./img/14/2.jpg",
+            "./img/14/3.jpg",
+            "./img/14/4.jpg",
+          ],
+          videos: ["./img/14/1.mp4"], // 无视频
+          spec1: '3.5w',
+          spec2: '',
+          spec3: ''
+        },
+        {
+          id: 15,
+          name: "巴博二代 · 炫彩",
+          price: "套装¥330 · 蛋¥190",
+          shortDesc: "可换蛋 · 3.5w",
+          description: "炫彩二代 可换蛋 可以自由选择任何颜色壳子搭配烟弹 3.5w口的烟弹",
+          image: "./img/15/3.jpg",
+          carousel: [
+            "./img/15/1.jpg",
+            "./img/15/2.jpg",
+            "./img/15/3.jpg",
+            "./img/15/4.jpg",
+            "./img/15/5.jpg",
+          ],
+          videos: ["./img/15/1.mp4","./img/15/2.mp4"], // 无视频
+          spec1: '可换蛋',
+          spec2: '3.5w',
+          spec3: ''
+        },
+        {
+          id: 16,
+          name: "巴博三代 · 炫彩",
+          price: "套装¥340 · 蛋¥195",
+          shortDesc: "可换蛋 · 3.5w",
+          description: "炫彩三代 可换蛋 一样可选择颜色可口味 3.5w",
+          image: "./img/16/3.jpg",
+          carousel: [
+            "./img/16/1.jpg",
+            "./img/16/2.jpg",
+            "./img/16/3.jpg",
+            "./img/16/4.jpg",
+            "./img/16/5.jpg",
+          ],
+          videos: ["./img/16/1.mp4"], // 无视频
+          spec1: '可换蛋',
+          spec2: '3.5w',
+          spec3: ''
+        },
       ];
-
-      // 为每个产品生成柔和配色并存储
-      products.forEach(prod => {
-        prod.colors = generateMemphisPalette();
-      });
-
+      // 图片加载失败占位
       window.handleImageError = function(img) {
         img.onerror = null;
         const parent = img.parentNode;
@@ -622,22 +900,14 @@
         }
       };
 
-      const listContainer = document.getElementById('product-list-container');
-      function renderList() {
-        listContainer.innerHTML = '';
+      // 渲染列表网格
+      const gridContainer = document.getElementById('product-grid-container');
+      function renderGrid() {
+        gridContainer.innerHTML = '';
         products.forEach((prod) => {
           const card = document.createElement('div');
           card.className = 'product-card';
           card.dataset.id = prod.id;
-
-          const colors = prod.colors;
-          card.style.setProperty('--card-bg', colors.mainColor);
-          card.style.setProperty('--card-border', colors.borderColor);
-          card.style.setProperty('--card-shadow', colors.shadowColor);
-          card.style.setProperty('--name-bg', colors.secondaryColor);
-          card.style.setProperty('--price-bg', colors.accentColor);
-          card.style.setProperty('--desc-bg', colors.descBg);
-          card.style.setProperty('--tag-bg', colors.tagBg);
 
           const imgDiv = document.createElement('div');
           imgDiv.className = 'card-image';
@@ -649,18 +919,15 @@
           imgDiv.appendChild(img);
 
           const contentDiv = document.createElement('div');
-          contentDiv.className = 'card-content';
           contentDiv.innerHTML = `
-            <div class="card-header">
-              <span class="product-name">${prod.name}</span>
-              <span class="product-price">${prod.price}</span>
-            </div>
+            <div class="product-name">${prod.name}</div>
+            <div class="product-price">${prod.price}</div>
             <div class="product-desc">${prod.shortDesc}</div>
           `;
 
           card.appendChild(imgDiv);
           card.appendChild(contentDiv);
-          listContainer.appendChild(card);
+          gridContainer.appendChild(card);
 
           card.addEventListener('click', () => {
             showDetail(prod);
@@ -668,59 +935,332 @@
         });
       }
 
+      // 详情页元素
       const listPage = document.getElementById('list-page');
       const detailPage = document.getElementById('detail-page');
       const backBtn = document.getElementById('back-to-list');
-      let detailImage = document.getElementById('detail-image');
       const detailName = document.getElementById('detail-name');
       const detailPrice = document.getElementById('detail-price');
       const detailDesc = document.getElementById('detail-description');
-      const videoElement = document.getElementById('product-video');
-      const specTagsContainer = document.querySelector('.spec-tags');
+      const videoSection = document.getElementById('video-section');
+      const videoContainer = document.getElementById('video-container');
+      const specTagsContainer = document.getElementById('spec-tags');
+
+      // 轮播元素
+      const carouselContainer = document.getElementById('carousel-container');
+      const carouselSlides = document.getElementById('carousel-slides');
+      const carouselDots = document.getElementById('carousel-dots');
+
+      let currentCarouselIndex = 0;
+      let currentProductCarousel = [];
+
+      // 触摸滑动相关变量
+      let touchStartX = 0;
+      let touchEndX = 0;
+      let isSwiping = false;
+
+      // 预览模态框元素
+      const previewModal = document.getElementById('preview-modal');
+      const previewClose = document.getElementById('preview-close');
+      const previewSlides = document.getElementById('preview-slides');
+      const previewDots = document.getElementById('preview-dots');
+      const previewPrev = document.getElementById('preview-prev');
+      const previewNext = document.getElementById('preview-next');
+      let previewIndex = 0;
+
+      // 轮播图渲染
+      function renderCarousel(images) {
+        carouselSlides.innerHTML = '';
+        carouselDots.innerHTML = '';
+
+        if (!images || images.length === 0) {
+          const placeholderSlide = document.createElement('div');
+          placeholderSlide.className = 'carousel-slide';
+          placeholderSlide.innerHTML = '<div class="img-error-placeholder"><i class="ri-image-line"></i><span>暂无图片</span></div>';
+          carouselSlides.appendChild(placeholderSlide);
+          return;
+        }
+
+        images.forEach((src, index) => {
+          const slide = document.createElement('div');
+          slide.className = 'carousel-slide';
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `轮播图${index+1}`;
+          img.onerror = function() { handleImageError(this); };
+          slide.appendChild(img);
+          carouselSlides.appendChild(slide);
+
+          const dot = document.createElement('span');
+          dot.className = 'carousel-dot';
+          if (index === 0) dot.classList.add('active');
+          dot.dataset.index = index;
+          dot.addEventListener('click', () => {
+            currentCarouselIndex = index;
+            updateCarousel();
+          });
+          carouselDots.appendChild(dot);
+        });
+
+        currentCarouselIndex = 0;
+        updateCarousel();
+
+        // 为每个轮播项添加点击放大预览
+        Array.from(carouselSlides.children).forEach((slide, idx) => {
+          slide.addEventListener('click', () => {
+            openPreview(idx);
+          });
+        });
+      }
+
+      function updateCarousel() {
+        const slidesCount = carouselSlides.children.length;
+        if (slidesCount === 0) return;
+        const offset = currentCarouselIndex * 100;
+        carouselSlides.style.transform = `translateX(-${offset}%)`;
+        Array.from(carouselDots.children).forEach((dot, idx) => {
+          if (idx === currentCarouselIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      // 触摸滑动事件
+      function onTouchStart(e) {
+        touchStartX = e.touches[0].clientX;
+        isSwiping = true;
+      }
+
+      function onTouchMove(e) {
+        if (!isSwiping) return;
+        e.preventDefault();
+        touchEndX = e.touches[0].clientX;
+      }
+
+      function onTouchEnd(e) {
+        if (!isSwiping) return;
+        isSwiping = false;
+        const threshold = 50;
+        const diffX = touchEndX - touchStartX;
+        if (Math.abs(diffX) > threshold) {
+          if (diffX > 0) {
+            // 向右滑 -> 上一张
+            if (currentProductCarousel.length > 0) {
+              currentCarouselIndex = (currentCarouselIndex - 1 + currentProductCarousel.length) % currentProductCarousel.length;
+              updateCarousel();
+            }
+          } else {
+            // 向左滑 -> 下一张
+            if (currentProductCarousel.length > 0) {
+              currentCarouselIndex = (currentCarouselIndex + 1) % currentProductCarousel.length;
+              updateCarousel();
+            }
+          }
+        }
+        touchStartX = 0;
+        touchEndX = 0;
+      }
+
+      // 绑定/解绑触摸事件
+      function bindSwipeEvents() {
+        carouselContainer.removeEventListener('touchstart', onTouchStart);
+        carouselContainer.removeEventListener('touchmove', onTouchMove);
+        carouselContainer.removeEventListener('touchend', onTouchEnd);
+        carouselContainer.addEventListener('touchstart', onTouchStart);
+        carouselContainer.addEventListener('touchmove', onTouchMove, { passive: false });
+        carouselContainer.addEventListener('touchend', onTouchEnd);
+      }
+
+      // 打开预览
+      function openPreview(index) {
+        previewIndex = index;
+        renderPreview();
+        previewModal.classList.add('active');
+      }
+
+      // 渲染预览
+      function renderPreview() {
+        if (!currentProductCarousel || currentProductCarousel.length === 0) return;
+        previewSlides.innerHTML = '';
+        previewDots.innerHTML = '';
+        currentProductCarousel.forEach((src, idx) => {
+          const slide = document.createElement('div');
+          slide.className = 'preview-slide';
+          const img = document.createElement('img');
+          img.src = src;
+          img.alt = `预览图${idx+1}`;
+          slide.appendChild(img);
+          previewSlides.appendChild(slide);
+
+          const dot = document.createElement('span');
+          dot.className = 'preview-dot';
+          if (idx === previewIndex) dot.classList.add('active');
+          dot.addEventListener('click', () => {
+            previewIndex = idx;
+            updatePreview();
+          });
+          previewDots.appendChild(dot);
+        });
+        updatePreview();
+      }
+
+      function updatePreview() {
+        const offset = previewIndex * 100;
+        previewSlides.style.transform = `translateX(-${offset}%)`;
+        Array.from(previewDots.children).forEach((dot, idx) => {
+          if (idx === previewIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      // 预览切换
+      previewPrev.addEventListener('click', () => {
+        if (!currentProductCarousel || currentProductCarousel.length === 0) return;
+        previewIndex = (previewIndex - 1 + currentProductCarousel.length) % currentProductCarousel.length;
+        updatePreview();
+      });
+      previewNext.addEventListener('click', () => {
+        if (!currentProductCarousel || currentProductCarousel.length === 0) return;
+        previewIndex = (previewIndex + 1) % currentProductCarousel.length;
+        updatePreview();
+      });
+      previewClose.addEventListener('click', () => {
+        previewModal.classList.remove('active');
+      });
+      previewModal.addEventListener('click', (e) => {
+        if (e.target === previewModal) {
+          previewModal.classList.remove('active');
+        }
+      });
+
+      // 渲染规格标签（无图标）
+      function renderSpecs(spec1, spec2, spec3) {
+        specTagsContainer.innerHTML = '';
+        const specs = [spec1, spec2, spec3];
+        specs.forEach(value => {
+          if (value && value.trim() !== '') {
+            const tag = document.createElement('span');
+            tag.className = 'spec-tag';
+            tag.textContent = value;
+            specTagsContainer.appendChild(tag);
+          }
+        });
+      }
+
+      // 渲染视频模块
+      function renderVideos(videos) {
+        if (!videos || videos.length === 0) {
+          videoSection.classList.add('hidden');
+          return;
+        }
+        videoSection.classList.remove('hidden');
+        videoContainer.innerHTML = '';
+
+        if (videos.length === 1) {
+          const singleDiv = document.createElement('div');
+          singleDiv.className = 'video-single';
+          const video = document.createElement('video');
+          video.controls = true;
+          video.playsInline = true;
+          const source = document.createElement('source');
+          source.src = videos[0];
+          source.type = 'video/mp4';
+          video.appendChild(source);
+          video.poster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f4f8'/%3E%3Ctext x='30' y='110' font-family='Inter' font-size='24' fill='%238f9eb5' font-weight='300'%3EPREVIEW%3C/text%3E%3C/svg%3E";
+          singleDiv.appendChild(video);
+          videoContainer.appendChild(singleDiv);
+        } else {
+          const carouselDiv = document.createElement('div');
+          carouselDiv.className = 'video-carousel-container';
+          carouselDiv.innerHTML = `
+            <div class="video-carousel-slides" id="video-carousel-slides"></div>
+            <div class="video-carousel-arrow left" id="video-carousel-prev"><i class="ri-arrow-left-s-line"></i></div>
+            <div class="video-carousel-arrow right" id="video-carousel-next"><i class="ri-arrow-right-s-line"></i></div>
+            <div class="video-carousel-dots" id="video-carousel-dots"></div>
+          `;
+          videoContainer.appendChild(carouselDiv);
+
+          const slidesContainer = document.getElementById('video-carousel-slides');
+          const dotsContainer = document.getElementById('video-carousel-dots');
+          const prevVideo = document.getElementById('video-carousel-prev');
+          const nextVideo = document.getElementById('video-carousel-next');
+
+          let videoIndex = 0;
+
+          videos.forEach((src, idx) => {
+            const slide = document.createElement('div');
+            slide.className = 'video-carousel-slide';
+            const video = document.createElement('video');
+            video.controls = true;
+            video.playsInline = true;
+            const source = document.createElement('source');
+            source.src = src;
+            source.type = 'video/mp4';
+            video.appendChild(source);
+            video.poster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f4f8'/%3E%3Ctext x='30' y='110' font-family='Inter' font-size='24' fill='%238f9eb5' font-weight='300'%3EPREVIEW%3C/text%3E%3C/svg%3E";
+            slide.appendChild(video);
+            slidesContainer.appendChild(slide);
+
+            const dot = document.createElement('span');
+            dot.className = 'video-carousel-dot';
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => {
+              videoIndex = idx;
+              updateVideoCarousel();
+            });
+            dotsContainer.appendChild(dot);
+          });
+
+          function updateVideoCarousel() {
+            const offset = videoIndex * 100;
+            slidesContainer.style.transform = `translateX(-${offset}%)`;
+            Array.from(dotsContainer.children).forEach((dot, i) => {
+              if (i === videoIndex) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          }
+
+          prevVideo.addEventListener('click', () => {
+            videoIndex = (videoIndex - 1 + videos.length) % videos.length;
+            updateVideoCarousel();
+          });
+
+          nextVideo.addEventListener('click', () => {
+            videoIndex = (videoIndex + 1) % videos.length;
+            updateVideoCarousel();
+          });
+
+          updateVideoCarousel();
+        }
+      }
+
+      // 暂停所有视频（用于返回列表页）
+      function pauseAllVideos() {
+        const videos = document.querySelectorAll('video');
+        videos.forEach(v => {
+          v.pause();
+        });
+      }
 
       function showDetail(prod) {
-        const parent = detailImage.parentNode;
-        if (detailImage.tagName !== 'IMG') {
-          const newImg = document.createElement('img');
-          newImg.id = 'detail-image';
-          newImg.alt = '电子烟实拍';
-          newImg.onerror = function() { handleImageError(this); };
-          parent.replaceChild(newImg, detailImage);
-          detailImage = newImg;
-        }
-        detailImage.src = prod.image;
+        currentProductCarousel = prod.carousel || [];
+        renderCarousel(currentProductCarousel);
+        bindSwipeEvents(); // 绑定触摸事件
+
         detailName.textContent = prod.name;
         detailPrice.textContent = prod.price;
         detailDesc.textContent = prod.description;
 
-        const colors = prod.colors;
-        detailPage.style.setProperty('--card-border', colors.borderColor);
-        detailPage.style.setProperty('--card-shadow', colors.shadowColor);
-        detailPage.style.setProperty('--price-bg', colors.accentColor);
-        detailPage.style.setProperty('--detail-header-bg', colors.secondaryColor);
-        detailPage.style.setProperty('--back-btn-bg', colors.mainColor);
-        detailPage.style.setProperty('--back-btn-icon', colors.borderColor);
-        detailPage.style.setProperty('--detail-title', colors.borderColor);
-        detailPage.style.setProperty('--title-shadow', colors.secondaryColor);
-        detailPage.style.setProperty('--detail-image-bg', colors.descBg);
-        detailPage.style.setProperty('--detail-name-bg', colors.mainColor);
-        detailPage.style.setProperty('--desc-section-bg', colors.descBg);
-        detailPage.style.setProperty('--desc-label', colors.borderColor);
-        detailPage.style.setProperty('--label-bg', colors.secondaryColor);
-        detailPage.style.setProperty('--tag-bg', colors.tagBg);
-        detailPage.style.setProperty('--tag-icon', colors.borderColor);
-        detailPage.style.setProperty('--video-label', colors.borderColor);
-        detailPage.style.setProperty('--video-label-bg', colors.secondaryColor);
-        detailPage.style.setProperty('--video-icon', colors.borderColor);
-
-        if (specTagsContainer) {
-          const tags = specTagsContainer.querySelectorAll('.spec-tag');
-          if (tags.length >= 3) {
-            tags[0].innerHTML = `<i class="ri-battery-charge-line"></i> ${prod.spec1 || '—'}`;
-            tags[1].innerHTML = `<i class="ri-drop-line"></i> ${prod.spec2 || '—'}`;
-            tags[2].innerHTML = `<i class="ri-flashlight-line"></i> ${prod.spec3 || '—'}`;
-          }
-        }
+        renderSpecs(prod.spec1, prod.spec2, prod.spec3);
+        renderVideos(prod.videos || []);
 
         listPage.classList.add('hidden');
         detailPage.classList.remove('hidden');
@@ -729,12 +1269,11 @@
       backBtn.addEventListener('click', () => {
         detailPage.classList.add('hidden');
         listPage.classList.remove('hidden');
-        videoElement.pause();
-        videoElement.currentTime = 0;
+        pauseAllVideos(); // 暂停所有视频
+        previewModal.classList.remove('active'); // 关闭可能打开的预览
       });
 
-      renderList();
-      videoElement.load();
+      renderGrid();
     })();
   </script>
 </body>
