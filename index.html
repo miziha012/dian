@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Cuteuu9 · 电子烟</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap"
+    rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
   <style>
     * {
@@ -48,9 +51,11 @@
     .page::-webkit-scrollbar {
       width: 4px;
     }
+
     .page::-webkit-scrollbar-track {
       background: #edf2f7;
     }
+
     .page::-webkit-scrollbar-thumb {
       background: #cbd5e0;
       border-radius: 8px;
@@ -166,6 +171,7 @@
       border: 1px solid #e2e8f0;
       transition: background 0.2s;
     }
+
     .back-btn:active {
       background: #f7fafc;
     }
@@ -208,7 +214,8 @@
       flex: 0 0 100%;
       height: 100%;
       background: #f0f4f8;
-      cursor: pointer; /* 点击放大预览 */
+      cursor: pointer;
+      /* 点击放大预览 */
     }
 
     .carousel-slide img {
@@ -228,6 +235,7 @@
       gap: 8px;
       z-index: 5;
     }
+
     .carousel-dot {
       width: 8px;
       height: 8px;
@@ -237,6 +245,7 @@
       cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
+
     .carousel-dot.active {
       background: #2c6b8f;
       transform: scale(1.2);
@@ -284,6 +293,7 @@
       align-items: center;
       gap: 6px;
     }
+
     .desc-label i {
       font-size: 16px;
       color: #9aa9b7;
@@ -304,6 +314,7 @@
       flex-wrap: wrap;
       margin-top: 8px;
     }
+
     .spec-tag {
       background: #f0f4f8;
       border-radius: 20px;
@@ -320,6 +331,7 @@
       margin-top: 4px;
       margin-bottom: 20px;
     }
+
     .video-section.hidden {
       display: none;
     }
@@ -333,6 +345,7 @@
       align-items: center;
       gap: 8px;
     }
+
     .video-label i {
       font-size: 18px;
       color: #9aa9b7;
@@ -403,9 +416,11 @@
       border: 1px solid #e2e8f0;
       z-index: 5;
     }
+
     .video-carousel-arrow.left {
       left: 20px;
     }
+
     .video-carousel-arrow.right {
       right: 20px;
     }
@@ -420,6 +435,7 @@
       gap: 8px;
       z-index: 5;
     }
+
     .video-carousel-dot {
       width: 8px;
       height: 8px;
@@ -428,6 +444,7 @@
       border: 1px solid rgba(0, 0, 0, 0.1);
       cursor: pointer;
     }
+
     .video-carousel-dot.active {
       background: #2c6b8f;
       transform: scale(1.2);
@@ -449,10 +466,12 @@
       visibility: hidden;
       transition: opacity 0.3s ease;
     }
+
     .preview-modal.active {
       opacity: 1;
       visibility: visible;
     }
+
     .preview-close {
       position: absolute;
       top: 20px;
@@ -470,9 +489,11 @@
       z-index: 1001;
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
+
     .preview-close:active {
       background: rgba(255, 255, 255, 0.3);
     }
+
     .preview-container {
       position: relative;
       width: 100%;
@@ -481,12 +502,14 @@
       align-items: center;
       justify-content: center;
     }
+
     .preview-slides {
       display: flex;
       width: 100%;
       height: 100%;
       transition: transform 0.3s ease;
     }
+
     .preview-slide {
       flex: 0 0 100%;
       height: 100%;
@@ -494,11 +517,13 @@
       align-items: center;
       justify-content: center;
     }
+
     .preview-slide img {
       max-width: 90%;
       max-height: 90%;
       object-fit: contain;
     }
+
     .preview-arrow {
       position: absolute;
       top: 50%;
@@ -516,12 +541,15 @@
       z-index: 1002;
       border: 1px solid rgba(255, 255, 255, 0.3);
     }
+
     .preview-arrow.left {
       left: 20px;
     }
+
     .preview-arrow.right {
       right: 20px;
     }
+
     .preview-dots {
       position: absolute;
       bottom: 20px;
@@ -532,6 +560,7 @@
       gap: 12px;
       z-index: 1002;
     }
+
     .preview-dot {
       width: 10px;
       height: 10px;
@@ -540,6 +569,7 @@
       border: 1px solid rgba(255, 255, 255, 0.3);
       cursor: pointer;
     }
+
     .preview-dot.active {
       background: white;
       transform: scale(1.2);
@@ -548,13 +578,24 @@
     .bottom-filler {
       height: 16px;
     }
+
+    .stock-legend {
+      font-size: 13px;
+      color: #6f7e8c;
+      margin-bottom: 16px;
+    }
   </style>
 </head>
+
 <body>
   <div class="app">
     <!-- 列表页 -->
     <div id="list-page" class="page">
       <div class="header-title">Cuteuu9 · 电子烟</div>
+      <!-- 新增图例 -->
+      <div class="stock-legend">
+        <span style="color:red">隐藏红色</span>无货，<span style="color: yellow;">黄色</span>库存告急，请加备选
+      </div>
       <div class="product-grid" id="product-grid-container"></div>
       <div class="bottom-filler"></div>
     </div>
@@ -612,15 +653,15 @@
   </div>
 
   <script>
-    (function() {
+    (function () {
       // 商品数据
       const products = [
         {
           id: 1,
           name: "冰爆",
           price: "¥108",
-          shortDesc: "1.2w",
-          description: "奇异果爆珠，桂花乌龙，龙井，柠檬菠萝，迈阿密薄荷，绿豆冰，番石榴，青苹果，新鲜柠檬，茉莉奶茶，矿泉水，宝矿力，特别推荐新口味： 迈阿密薄荷（口感超好，销量第一）其它口味在途",
+          shortDesc: "1.2w口",
+          description: "蓝莓，可乐，宝矿力，奇异果，椰子，香芋，哈密瓜，老冰棍，绿豆，<span style='color:yellow'>薄荷，芒果</span><br>特别推荐新口味： 迈阿密薄荷（口感超好，销量第一）其它口味在途",
           image: "./img/1/1.jpg",
           carousel: [
             "./img/1/1.jpg",
@@ -628,7 +669,7 @@
           ],
           // 多个视频
           videos: [],
-          spec1: '1.2w',
+          spec1: '1.2w口',
           spec2: '',
           spec3: ''
         },
@@ -637,7 +678,7 @@
           name: "SnowPlusDash鸭嘴兽",
           price: "¥98",
           shortDesc: "5000口",
-          description: "酸甜葡萄，绿豆，抹茶沙冰，青苹果，荔枝，西瓜冰，老冰棍，桃子冰，甜哈密瓜，西柚百香果，火龙果，青柠檬冰，可乐，柠檬菠萝，椰子，茉莉花茶，芭乐番石榴，矿泉水，洛神花茶，红酒冰 ，金汤利，气泡冰柠檬茶，芋头冰，青葡萄，玉米冰淇淋，薄荷，龙井冰茶特别推荐新口味：青葡萄（口感超好，销量第一）其它口味在途",
+          description: "香芋，铁观音，青柠，抹茶，老冰棍，百香果，荔枝，黑龙冰，红苹果，手打柠檬，芭乐，火龙果，柠檬菠萝，红酒<br>特别推荐新口味：青葡萄（口感超好，销量第一）其它口味在途",
           image: "./img/2/2.jpg",
           carousel: [
             "./img/2/1.jpg",
@@ -655,7 +696,7 @@
           name: "小黑条",
           price: "¥78",
           shortDesc: "",
-          description: "冰可乐柠檬， 荔枝，青芒果，桃子，哈密瓜，青提，青苹果，百香果，椰子冰，绿豆，薄荷，蓝莓，菠萝，西瓜，矿泉水，奶酪，龙眼，雪碧，爆米花，猕猴桃特别推荐新口味：椰子冰（口感超好，销量第一）其它口味在途",
+          description: "芒果，百香果，水蜜桃，龙眼，草莓，浆果，蜜露，乳酸菌，菠萝，青提，柠檬，青芒，绿豆，哈密瓜，香芋，椰子，榴莲，黄皮，葡萄酒，青柠，芭乐，西瓜，葡萄，荔枝，龙井，蓝莓<br>特别推荐新口味：椰子冰（口感超好，销量第一）其它口味在途",
           image: "./img/3/2.jpg",
           carousel: [
             "./img/3/1.jpg",
@@ -672,8 +713,8 @@
           id: 4,
           name: "产品阿尔法 song",
           price: "¥155",
-          shortDesc: "1.7w · 带水声",
-          description: "樱桃狂欢节，莓果冰，果酱薄荷，清醒之梦：（橘子味道），魔法之爱，柠檬薄荷，甜百香果，口香糖薄荷，芒果冰，蓝莓柠檬水，西柚，奇异果，葡萄，柠檬可乐，黑加仑，蓝莓，西瓜桃子冰特别推荐口味：清醒之梦（口感超好，销量第一）其它口味在途",
+          shortDesc: "1.7w口 · 带水声",
+          description: "柠檬，芒果，泡泡糖薄荷，柠檬薄荷，<span style='color:yellow'>太空梦想</span><br>特别推荐口味：清醒之梦（口感超好，销量第一）其它口味在途",
           image: "./img/4/3.jpg",
           carousel: [
             "./img/4/1.jpg",
@@ -681,7 +722,7 @@
             "./img/4/3.jpg",
           ],
           videos: [],
-          spec1: '1.7w',
+          spec1: '1.7w口',
           spec2: '带水声',
         },
         {
@@ -689,7 +730,7 @@
           name: "巴博",
           price: "¥208",
           shortDesc: "",
-          description: "芒果汁，柠檬汽水，黑加仑薄荷，芦荟葡萄，冰苔原梅，冰薄荷，甜薄荷 特别推荐新口味：芒果汁（口感超好，销量第一）其它口味在途",
+          description: "芒果汁，柠檬汽水，黑加仑薄荷，芦荟葡萄，冰苔原梅，冰薄荷，甜薄荷 <br>特别推荐新口味：芒果汁（口感超好，销量第一）其它口味在途",
           image: "./img/5/4.jpg",
           carousel: [
             "./img/5/1.jpg",
@@ -757,7 +798,7 @@
           name: "美版冰熊3颗装",
           price: "¥98",
           shortDesc: "一盒三个 · 适配兼容四五六代",
-          description: "山泉水，柠檬，龙眼冰，薄荷，可乐，芒果，柠檬茶，番石榴，冰咖啡，葡萄，绿豆，冰棒，情人百香果甜心，香芋冰淇淋，香桃冰，西瓜，梅果，荔枝，菠萝橙子，草莓冰淇淋 特别推荐新口味：草莓冰淇淋（口感超好，销量第一）其它口味在途",
+          description: "青提，青柠，绿豆，宝矿力，白桃，芒果，西瓜，薄荷，老冰棍，西柚，百香果，青苹果，香芋，龙井，草莓，荔枝，葡萄，伯牙，甜瓜，菠萝，柠檬茶，乌龙茶，可乐 <br>特别推荐新口味：草莓冰淇淋（口感超好，销量第一）其它口味在途",
           image: "./img/9/1.jpg",
           carousel: [
             "./img/9/1.jpg",
@@ -772,7 +813,7 @@
           name: "ub原装🥚",
           price: "¥188",
           shortDesc: "一盒三个 · 适配兼容四五六代",
-          description: "草莓雪冰，C味鲜橙 ，冰魄蓝莓烟，桃气乌龙，雪碧，冰红茶，老冰棍儿，手打柠檬冰，微醺莫吉托，酸奶，爽薄荷，橘子汽水，冰萃咖啡，冰柠薄荷，可乐冰，草莓雪冰，一颗西梅，热情番石榴，香芋冰淇淋 特别推荐新口味:可乐冰（口感超好，销量第一）其它口味在途",
+          description: "冰镇西瓜，冷泡龙井，冰柠薄荷，绿宝石甜瓜，雪玉冰荔枝，金桔百香果，可乐冰，一颗西梅，绿豆冰棒，橙香柚感，老冰棍，手打柠檬冰，c味鲜橙，桃气乌龙，茉莉奶茶，橘子汽水，爽薄荷，初露青提，功夫铁观音，多肉芒芒，冰魂蓝莓烟，热情番石榴，香芋冰淇淋，菠萝旋风，草莓雪冰，多汁葡萄，冰红茶，微醺莫吉托，脆苹果，洛神花，爆柠樱桃，椰子水，冰糖雪梨，酸奶，茉莉花茶，香蕉，冰镇蜜柚茶，矿泉水，咖啡，葡萄酒 <br>特别推荐新口味:可乐冰（口感超好，销量第一）其它口味在途",
           image: "./img/10/2.jpg",
           carousel: [
             "./img/10/1.jpg",
@@ -804,7 +845,7 @@
           id: 12,
           name: "冰神一代",
           price: "¥275",
-          shortDesc: "",
+          shortDesc: "3w口",
           description: "一代冰神。 三万口。 现在有四万口的冰神了。韩版拿货贵",
           image: "./img/12/3.jpg",
           carousel: [
@@ -813,7 +854,7 @@
             "./img/12/3.jpg",
           ],
           videos: ["./img/12/1.mp4"], // 无视频
-          spec1: '',
+          spec1: '3w口',
           spec2: '',
           spec3: ''
         },
@@ -821,23 +862,23 @@
           id: 13,
           name: "积木二代",
           price: "套装¥285 · 蛋¥195",
-          shortDesc: "可换单 · 有显示屏 · 可打游戏 · 2.5w",
+          shortDesc: "可换单 · 有显示屏 · 可打游戏 · 2.5w口",
           description: "可以换蛋 有显示屏 可打游戏 2.5w口 多巴胺设计很可爱",
           image: "./img/13/1.jpg",
           carousel: [
             "./img/13/1.jpg",
             "./img/13/2.jpg",
           ],
-          videos: ["./img/13/1.mp4","./img/13/2.mp4"], // 无视频
+          videos: ["./img/13/1.mp4", "./img/13/2.mp4"], // 无视频
           spec1: '可换单',
           spec2: '有显示屏',
-          spec3: '2.5w',
+          spec3: '2.5w口',
         },
         {
           id: 14,
           name: "巴博一代 · 炫彩",
           price: "¥305",
-          shortDesc: "3.5w",
+          shortDesc: "3.5w口",
           description: "炫彩一代 一次性dzy 用完就没有了 3.5w口 很漂亮 口感很好",
           image: "./img/14/4.jpg",
           carousel: [
@@ -847,7 +888,7 @@
             "./img/14/4.jpg",
           ],
           videos: ["./img/14/1.mp4"], // 无视频
-          spec1: '3.5w',
+          spec1: '3.5w口',
           spec2: '',
           spec3: ''
         },
@@ -855,7 +896,7 @@
           id: 15,
           name: "巴博二代 · 炫彩",
           price: "套装¥330 · 蛋¥190",
-          shortDesc: "可换蛋 · 3.5w",
+          shortDesc: "可换蛋 · 3.5w口",
           description: "炫彩二代 可换蛋 可以自由选择任何颜色壳子搭配烟弹 3.5w口的烟弹",
           image: "./img/15/3.jpg",
           carousel: [
@@ -865,17 +906,17 @@
             "./img/15/4.jpg",
             "./img/15/5.jpg",
           ],
-          videos: ["./img/15/1.mp4","./img/15/2.mp4"], // 无视频
+          videos: ["./img/15/1.mp4", "./img/15/2.mp4"], // 无视频
           spec1: '可换蛋',
-          spec2: '3.5w',
+          spec2: '3.5w口',
           spec3: ''
         },
         {
           id: 16,
           name: "巴博三代 · 炫彩",
           price: "套装¥340 · 蛋¥195",
-          shortDesc: "可换蛋 · 3.5w",
-          description: "炫彩三代 可换蛋 一样可选择颜色可口味 3.5w",
+          shortDesc: "可换蛋 · 3.5w口",
+          description: "炫彩三代 可换蛋 一样可选择颜色可口味 3.5w口",
           image: "./img/16/3.jpg",
           carousel: [
             "./img/16/1.jpg",
@@ -886,12 +927,12 @@
           ],
           videos: ["./img/16/1.mp4"], // 无视频
           spec1: '可换蛋',
-          spec2: '3.5w',
+          spec2: '3.5w口',
           spec3: ''
         },
       ];
       // 图片加载失败占位
-      window.handleImageError = function(img) {
+      window.handleImageError = function (img) {
         img.onerror = null;
         const parent = img.parentNode;
         const placeholder = document.createElement('div');
@@ -917,7 +958,7 @@
           img.src = prod.image;
           img.alt = prod.name;
           img.loading = 'lazy';
-          img.onerror = function() { handleImageError(this); };
+          img.onerror = function () { handleImageError(this); };
           imgDiv.appendChild(img);
 
           const contentDiv = document.createElement('div');
@@ -988,8 +1029,8 @@
           slide.className = 'carousel-slide';
           const img = document.createElement('img');
           img.src = src;
-          img.alt = `轮播图${index+1}`;
-          img.onerror = function() { handleImageError(this); };
+          img.alt = `轮播图${index + 1}`;
+          img.onerror = function () { handleImageError(this); };
           slide.appendChild(img);
           carouselSlides.appendChild(slide);
 
@@ -1092,7 +1133,7 @@
           slide.className = 'preview-slide';
           const img = document.createElement('img');
           img.src = src;
-          img.alt = `预览图${idx+1}`;
+          img.alt = `预览图${idx + 1}`;
           slide.appendChild(img);
           previewSlides.appendChild(slide);
 
@@ -1259,7 +1300,8 @@
 
         detailName.textContent = prod.name;
         detailPrice.textContent = prod.price;
-        detailDesc.textContent = prod.description;
+        // detailDesc.textContent = prod.description;
+        detailDesc.innerHTML = prod.description;
 
         renderSpecs(prod.spec1, prod.spec2, prod.spec3);
         renderVideos(prod.videos || []);
@@ -1279,4 +1321,5 @@
     })();
   </script>
 </body>
+
 </html>
