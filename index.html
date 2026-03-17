@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Cuteuu9 · 电子烟</title>
+  <title>Cuteuu9 · 电子烟 (图片下载已禁用)</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600&display=swap" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
   <style>
+    /* 样式完全保持不变 */
     * {
       margin: 0;
       padding: 0;
@@ -61,7 +59,6 @@
       border-radius: 8px;
     }
 
-    /* ===== 列表页头部 ===== */
     .header-title {
       font-size: 28px;
       font-weight: 300;
@@ -72,7 +69,6 @@
       padding-bottom: 12px;
     }
 
-    /* ===== 双列网格 ===== */
     .product-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -148,7 +144,6 @@
       overflow: hidden;
     }
 
-    /* ===== 详情页 ===== */
     .detail-header {
       display: flex;
       align-items: center;
@@ -183,7 +178,6 @@
       color: #2d3f4b;
     }
 
-    /* 轮播图（无箭头） */
     .detail-carousel {
       background: #ffffff;
       border-radius: 20px;
@@ -215,7 +209,6 @@
       height: 100%;
       background: #f0f4f8;
       cursor: pointer;
-      /* 点击放大预览 */
     }
 
     .carousel-slide img {
@@ -307,7 +300,6 @@
       margin-bottom: 16px;
     }
 
-    /* 规格标签（无图标） */
     .spec-tags {
       display: flex;
       gap: 8px;
@@ -326,7 +318,6 @@
       align-items: center;
     }
 
-    /* 视频模块 */
     .video-section {
       margin-top: 4px;
       margin-bottom: 20px;
@@ -450,7 +441,6 @@
       transform: scale(1.2);
     }
 
-    /* 图片预览模态框 */
     .preview-modal {
       position: fixed;
       top: 0;
@@ -592,7 +582,6 @@
     <!-- 列表页 -->
     <div id="list-page" class="page">
       <div class="header-title">Cuteuu9 · 电子烟</div>
-      <!-- 新增图例 -->
       <div class="stock-legend">
         <span style="color:red">隐藏红色</span>无货，<span style="background: yellow;">黄色</span>库存告急，请加备选
       </div>
@@ -609,7 +598,7 @@
         <div class="detail-title">产品详情</div>
       </div>
 
-      <!-- 轮播图区域（无箭头） -->
+      <!-- 轮播图区域 -->
       <div class="detail-carousel">
         <div class="carousel-container" id="carousel-container">
           <div class="carousel-slides" id="carousel-slides"></div>
@@ -627,15 +616,14 @@
         <div id="detail-description" class="desc-text">
           可调节气流，内置 1500mAh 电池，网状线圈，带来浓郁烟雾。
         </div>
-        <!-- 规格标签动态生成区域（无图标） -->
         <div id="spec-tags" class="spec-tags"></div>
       </div>
 
-      <!-- 视频模块 -->
-      <div id="video-section" class="video-section hidden">
+      <!-- 视频模块（已禁用下载） -->
+      <!-- <div id="video-section" class="video-section hidden">
         <div class="video-label"><i class="ri-movie-2-line"></i> 实拍展示</div>
         <div id="video-container"></div>
-      </div>
+      </div> -->
 
       <div class="bottom-filler"></div>
     </div>
@@ -654,7 +642,7 @@
 
   <script>
     (function () {
-      // 商品数据
+      // 商品数据 (与原来一致)
       const products = [
         {
           id: 1,
@@ -663,11 +651,7 @@
           shortDesc: "1.2w口",
           description: "蓝莓，可乐，宝矿力，奇异果，椰子，香芋，哈密瓜，老冰棍，绿豆，<span style='background:yellow'>薄荷，芒果</span><br>特别推荐新口味： 迈阿密薄荷（口感超好，销量第一）其它口味在途",
           image: "./img/1/1.jpg",
-          carousel: [
-            "./img/1/1.jpg",
-            "./img/1/2.jpg",
-          ],
-          // 多个视频
+          carousel: ["./img/1/1.jpg", "./img/1/2.jpg"],
           videos: [],
           spec1: '1.2w口',
           spec2: '',
@@ -680,12 +664,7 @@
           shortDesc: "5000口",
           description: "香芋，铁观音，青柠，抹茶，老冰棍，百香果，荔枝，黑龙冰，红苹果，手打柠檬，芭乐，火龙果，柠檬菠萝，红酒<br>特别推荐新口味：青葡萄（口感超好，销量第一）其它口味在途",
           image: "./img/2/2.jpg",
-          carousel: [
-            "./img/2/1.jpg",
-            "./img/2/2.jpg",
-            "./img/2/3.jpg"
-          ],
-          // 单个视频
+          carousel: ["./img/2/1.jpg", "./img/2/2.jpg", "./img/2/3.jpg"],
           videos: [],
           spec1: '5000口',
           spec2: '',
@@ -698,12 +677,7 @@
           shortDesc: "",
           description: "芒果，百香果，水蜜桃，龙眼，草莓，浆果，蜜露，乳酸菌，菠萝，青提，柠檬，青芒，绿豆，哈密瓜，香芋，椰子，榴莲，黄皮，葡萄酒，青柠，芭乐，西瓜，葡萄，荔枝，龙井，蓝莓<br>特别推荐新口味：椰子冰（口感超好，销量第一）其它口味在途",
           image: "./img/3/2.jpg",
-          carousel: [
-            "./img/3/1.jpg",
-            "./img/3/2.jpg",
-            "./img/3/3.jpg"
-          ],
-          // 无视频
+          carousel: ["./img/3/1.jpg", "./img/3/2.jpg", "./img/3/3.jpg"],
           videos: [],
           spec1: '',
           spec2: '',
@@ -716,9 +690,7 @@
           shortDesc: "1.7w口",
           description: "<span style='color:red'>荔枝</span>，西柚，奇异果，葡萄，柠檬可乐，<span style='color:red'>黑加仑</span>，<span style='color:red'>蓝莓</span>，西瓜 其它口味在途",
           image: "./img/17/1.jpg",
-          carousel: [
-            "./img/17/1.jpg",
-          ],
+          carousel: ["./img/17/1.jpg"],
           videos: [],
           spec1: '1.7w口',
           spec2: '带水声',
@@ -730,10 +702,7 @@
           shortDesc: "1.2w口 · 带水声",
           description: "柠檬，芒果，泡泡糖薄荷，柠檬薄荷，<span style='background:yellow'>太空梦想</span><br>特别推荐口味：清醒之梦（口感超好，销量第一）其它口味在途",
           image: "./img/4/2.jpg",
-          carousel: [
-            "./img/4/1.jpg",
-            "./img/4/2.jpg",
-          ],
+          carousel: ["./img/4/1.jpg", "./img/4/2.jpg"],
           videos: [],
           spec1: '1.2w口',
           spec2: '带水声',
@@ -745,13 +714,8 @@
           shortDesc: "",
           description: "芒果汁，柠檬汽水，黑加仑薄荷，芦荟葡萄，冰苔原梅，冰薄荷，甜薄荷 <br>特别推荐新口味：芒果汁（口感超好，销量第一）其它口味在途",
           image: "./img/5/4.jpg",
-          carousel: [
-            "./img/5/1.jpg",
-            "./img/5/2.jpg",
-            "./img/5/3.jpg",
-            "./img/5/4.jpg",
-          ],
-          videos: [], // 无视频
+          carousel: ["./img/5/1.jpg", "./img/5/2.jpg", "./img/5/3.jpg", "./img/5/4.jpg"],
+          videos: [],
           spec1: '',
           spec2: '',
           spec3: ''
@@ -763,16 +727,8 @@
           shortDesc: "2.5w口 · 可调凉度",
           description: "<span style='font-weight:bold'>国版库存：</span>菠萝椰子，葡萄樱桃，草莓猕猴桃，茉莉绿茶，迈阿密浓薄荷，西瓜，菠萝，宝矿力，蓝莓，桃子冰，柠檬，青提，苹果<br><span style='font-weight:bold'>韩版库存：</span>柚子，菠萝，桃子，青提，菠萝椰子，柠檬，茉莉绿茶，草莓猕猴桃，浓薄荷，苹果，蓝莓，西瓜，淡薄荷，宝矿力，葡萄<br>",
           image: "./img/12/1.jpg",
-          carousel: [
-            "./img/12/1.jpg",
-            "./img/12/2.jpg",
-            "./img/12/3.jpg",
-            "./img/12/4.jpg",
-            "./img/12/5.jpg",
-            "./img/12/6.jpg",
-          ],
-          videos: ["./img/12/1.mp4"], // 无视频
-          videos: [], // 无视频
+          carousel: ["./img/12/1.jpg", "./img/12/2.jpg", "./img/12/3.jpg", "./img/12/4.jpg", "./img/12/5.jpg", "./img/12/6.jpg"],
+          videos: [],
           spec1: '2.5w口',
           spec2: '可调凉度',
           spec3: ''
@@ -784,12 +740,8 @@
           shortDesc: "换弹区🥚",
           description: "樱花粉（粉色），黑曜石（黑色），蓝湾（蓝色），绿色海军（绿色），皇家靛蓝（紫色），黑暗小行星（灰色），珍珠闪白（白色） 特别推荐颜色：皇家靛蓝（紫色）",
           image: "./img/7/2.jpg",
-          carousel: [
-            "./img/7/1.jpg",
-            "./img/7/2.jpg",
-            "./img/7/3.jpg",
-          ],
-          videos: [], // 无视频
+          carousel: ["./img/7/1.jpg", "./img/7/2.jpg", "./img/7/3.jpg"],
+          videos: [],
           spec1: '换弹区🥚',
           spec2: '',
           spec3: ''
@@ -801,11 +753,8 @@
           shortDesc: "",
           description: "零度逐霜，皎月银，晨霜绿，赤焰橘，石墨黑蓝焰星光，星河映月，金慕霞光，绮境碧光，鸢尾蓝 特别推荐颜色：晨霜绿",
           image: "./img/8/1.jpg",
-          carousel: [
-            "./img/8/1.jpg",
-            "./img/8/2.jpg",
-          ],
-          videos: [], // 无视频
+          carousel: ["./img/8/1.jpg", "./img/8/2.jpg"],
+          videos: [],
           spec1: '',
           spec2: '',
           spec3: ''
@@ -817,10 +766,8 @@
           shortDesc: "一盒三个 · 适配兼容四五六代",
           description: "青提，青柠，绿豆，宝矿力，白桃，芒果，西瓜，薄荷，老冰棍，西柚，百香果，青苹果，香芋，龙井，草莓，荔枝，葡萄，伯牙，甜瓜，菠萝，柠檬茶，乌龙茶，可乐 <br>特别推荐新口味：草莓冰淇淋（口感超好，销量第一）其它口味在途",
           image: "./img/9/1.jpg",
-          carousel: [
-            "./img/9/1.jpg",
-          ],
-          videos: [], // 无视频
+          carousel: ["./img/9/1.jpg"],
+          videos: [],
           spec1: '一盒三个',
           spec2: '适配兼容四五六代',
           spec3: ''
@@ -832,11 +779,8 @@
           shortDesc: "一盒三个 · 适配兼容四五六代",
           description: "冰镇西瓜，冷泡龙井，冰柠薄荷，绿宝石甜瓜，雪玉冰荔枝，金桔百香果，可乐冰，一颗西梅，绿豆冰棒，橙香柚感，老冰棍，手打柠檬冰，c味鲜橙，桃气乌龙，茉莉奶茶，橘子汽水，爽薄荷，初露青提，功夫铁观音，多肉芒芒，冰魂蓝莓烟，热情番石榴，香芋冰淇淋，菠萝旋风，草莓雪冰，多汁葡萄，冰红茶，微醺莫吉托，脆苹果，洛神花，爆柠樱桃，椰子水，冰糖雪梨，酸奶，茉莉花茶，香蕉，冰镇蜜柚茶，矿泉水，咖啡，葡萄酒 <br>特别推荐新口味:可乐冰（口感超好，销量第一）其它口味在途",
           image: "./img/10/2.jpg",
-          carousel: [
-            "./img/10/1.jpg",
-            "./img/10/2.jpg",
-          ],
-          videos: [], // 无视频
+          carousel: ["./img/10/1.jpg", "./img/10/2.jpg"],
+          videos: [],
           spec1: '一盒三个',
           spec2: '适配兼容四五六代',
           spec3: ''
@@ -848,33 +792,12 @@
           shortDesc: "三模式切换",
           description: "五个颜色 每个都颜值超高，一面磨砂质感，一面镜面 女生无需考虑直接冲荔枝味！替大家试过了！ 粉色荔枝、桃子 银色薄荷、苹果 紫色蓝莓、李子 金色可乐、菠萝 绿色哈密瓜、青提",
           image: "./img/11/3.jpg",
-          carousel: [
-            "./img/11/1.jpg",
-            "./img/11/2.jpg",
-            "./img/11/3.jpg",
-          ],
-          videos: [], // 无视频
+          carousel: ["./img/11/1.jpg", "./img/11/2.jpg", "./img/11/3.jpg"],
+          videos: [],
           spec1: '三模式切换',
           spec2: '',
           spec3: ''
         },
-        // {
-        //   id: 12,
-        //   name: "冰神一代",
-        //   price: "¥275",
-        //   shortDesc: "3w口",
-        //   description: "一代冰神。 三万口。 现在有四万口的冰神了。韩版拿货贵",
-        //   image: "./img/12/3.jpg",
-        //   carousel: [
-        //     "./img/12/1.jpg",
-        //     "./img/12/2.jpg",
-        //     "./img/12/3.jpg",
-        //   ],
-        //   videos: ["./img/12/1.mp4"], // 无视频
-        //   spec1: '3w口',
-        //   spec2: '',
-        //   spec3: ''
-        // },
         {
           id: 13,
           name: "积木二代",
@@ -882,11 +805,8 @@
           shortDesc: "可换单 · 有显示屏 · 可打游戏 · 2.5w口",
           description: "可以换蛋 有显示屏 可打游戏 2.5w口 多巴胺设计很可爱",
           image: "./img/13/1.jpg",
-          carousel: [
-            "./img/13/1.jpg",
-            "./img/13/2.jpg",
-          ],
-          videos: ["./img/13/1.mp4", "./img/13/2.mp4"], // 无视频
+          carousel: ["./img/13/1.jpg", "./img/13/2.jpg"],
+          videos: ["./img/13/1.mp4", "./img/13/2.mp4"],
           spec1: '可换单',
           spec2: '有显示屏',
           spec3: '2.5w口',
@@ -898,17 +818,8 @@
           shortDesc: "3.5w口",
           description: "芒果汁，柠檬汽水，黑加仑薄荷，芦荟葡萄，冰苔原梅，冰薄荷，甜薄荷<br>特别推荐新口味：芒果汁（口感超好，销量第一）其它口味在途<br>王嘉尔同款三代 炫彩一代 一次性dzy 用完就没有了 3.5w口 口味偏甜 很漂亮 口感很好",
           image: "./img/14/1.jpg",
-          carousel: [
-            "./img/14/1.jpg",
-            "./img/14/2.jpg",
-            "./img/14/3.jpg",
-            "./img/14/4.jpg",
-            "./img/14/5.jpg",
-            "./img/14/6.jpg",
-            "./img/14/7.jpg",
-            "./img/14/8.jpg",
-          ],
-          videos: ["./img/14/1.mp4","./img/14/2.mp4"], // 无视频
+          carousel: ["./img/14/1.jpg", "./img/14/2.jpg", "./img/14/3.jpg", "./img/14/4.jpg", "./img/14/5.jpg", "./img/14/6.jpg", "./img/14/7.jpg", "./img/14/8.jpg"],
+          videos: ["./img/14/1.mp4","./img/14/2.mp4"],
           spec1: '3.5w口',
           spec2: '',
           spec3: ''
@@ -920,14 +831,8 @@
           shortDesc: "可换蛋 · 3.5w口",
           description: "炫彩二代 可换蛋 可以自由选择任何颜色壳子搭配烟弹 3.5w口的烟弹",
           image: "./img/15/3.jpg",
-          carousel: [
-            "./img/15/1.jpg",
-            "./img/15/2.jpg",
-            "./img/15/3.jpg",
-            "./img/15/4.jpg",
-            "./img/15/5.jpg",
-          ],
-          videos: ["./img/15/1.mp4", "./img/15/2.mp4"], // 无视频
+          carousel: ["./img/15/1.jpg", "./img/15/2.jpg", "./img/15/3.jpg", "./img/15/4.jpg", "./img/15/5.jpg"],
+          videos: ["./img/15/1.mp4", "./img/15/2.mp4"],
           spec1: '可换蛋',
           spec2: '3.5w口',
           spec3: ''
@@ -939,20 +844,14 @@
           shortDesc: "可换蛋 · 3.5w口",
           description: "炫彩三代 可换蛋 一样可选择颜色可口味 3.5w口",
           image: "./img/16/3.jpg",
-          carousel: [
-            "./img/16/1.jpg",
-            "./img/16/2.jpg",
-            "./img/16/3.jpg",
-            "./img/16/4.jpg",
-            "./img/16/5.jpg",
-          ],
-          videos: ["./img/16/1.mp4"], // 无视频
+          carousel: ["./img/16/1.jpg", "./img/16/2.jpg", "./img/16/3.jpg", "./img/16/4.jpg", "./img/16/5.jpg"],
+          videos: ["./img/16/1.mp4"],
           spec1: '可换蛋',
           spec2: '3.5w口',
           spec3: ''
         },
       ];
-      // 图片加载失败占位
+      
       window.handleImageError = function (img) {
         img.onerror = null;
         const parent = img.parentNode;
@@ -964,7 +863,20 @@
         }
       };
 
-      // 渲染列表网格
+      // ========== 新增：禁止图片下载的辅助函数 ==========
+      function disableImageDownload(imgElement) {
+        if (!imgElement) return;
+        // 阻止右键菜单（包括长按保存）
+        imgElement.oncontextmenu = (e) => e.preventDefault();
+        // 禁止拖拽
+        imgElement.setAttribute('draggable', 'false');
+        // 部分浏览器可能通过其他方式，再设置属性
+        imgElement.style.userSelect = 'none';
+        imgElement.style.webkitUserSelect = 'none';
+        imgElement.style.webkitTouchCallout = 'none'; // 禁用iOS长按菜单
+      }
+
+      // 列表网格容器
       const gridContainer = document.getElementById('product-grid-container');
       function renderGrid() {
         gridContainer.innerHTML = '';
@@ -980,6 +892,10 @@
           img.alt = prod.name;
           img.loading = 'lazy';
           img.onerror = function () { handleImageError(this); };
+          
+          // 禁止下载
+          disableImageDownload(img);
+          
           imgDiv.appendChild(img);
 
           const contentDiv = document.createElement('div');
@@ -999,7 +915,6 @@
         });
       }
 
-      // 详情页元素
       const listPage = document.getElementById('list-page');
       const detailPage = document.getElementById('detail-page');
       const backBtn = document.getElementById('back-to-list');
@@ -1010,7 +925,6 @@
       const videoContainer = document.getElementById('video-container');
       const specTagsContainer = document.getElementById('spec-tags');
 
-      // 轮播元素
       const carouselContainer = document.getElementById('carousel-container');
       const carouselSlides = document.getElementById('carousel-slides');
       const carouselDots = document.getElementById('carousel-dots');
@@ -1018,12 +932,10 @@
       let currentCarouselIndex = 0;
       let currentProductCarousel = [];
 
-      // 触摸滑动相关变量
       let touchStartX = 0;
       let touchEndX = 0;
       let isSwiping = false;
 
-      // 预览模态框元素
       const previewModal = document.getElementById('preview-modal');
       const previewClose = document.getElementById('preview-close');
       const previewSlides = document.getElementById('preview-slides');
@@ -1032,7 +944,6 @@
       const previewNext = document.getElementById('preview-next');
       let previewIndex = 0;
 
-      // 轮播图渲染
       function renderCarousel(images) {
         carouselSlides.innerHTML = '';
         carouselDots.innerHTML = '';
@@ -1052,6 +963,10 @@
           img.src = src;
           img.alt = `轮播图${index + 1}`;
           img.onerror = function () { handleImageError(this); };
+          
+          // 禁止下载
+          disableImageDownload(img);
+          
           slide.appendChild(img);
           carouselSlides.appendChild(slide);
 
@@ -1069,7 +984,6 @@
         currentCarouselIndex = 0;
         updateCarousel();
 
-        // 为每个轮播项添加点击放大预览
         Array.from(carouselSlides.children).forEach((slide, idx) => {
           slide.addEventListener('click', () => {
             openPreview(idx);
@@ -1091,7 +1005,6 @@
         });
       }
 
-      // 触摸滑动事件
       function onTouchStart(e) {
         touchStartX = e.touches[0].clientX;
         isSwiping = true;
@@ -1110,13 +1023,11 @@
         const diffX = touchEndX - touchStartX;
         if (Math.abs(diffX) > threshold) {
           if (diffX > 0) {
-            // 向右滑 -> 上一张
             if (currentProductCarousel.length > 0) {
               currentCarouselIndex = (currentCarouselIndex - 1 + currentProductCarousel.length) % currentProductCarousel.length;
               updateCarousel();
             }
           } else {
-            // 向左滑 -> 下一张
             if (currentProductCarousel.length > 0) {
               currentCarouselIndex = (currentCarouselIndex + 1) % currentProductCarousel.length;
               updateCarousel();
@@ -1127,7 +1038,6 @@
         touchEndX = 0;
       }
 
-      // 绑定/解绑触摸事件
       function bindSwipeEvents() {
         carouselContainer.removeEventListener('touchstart', onTouchStart);
         carouselContainer.removeEventListener('touchmove', onTouchMove);
@@ -1137,14 +1047,12 @@
         carouselContainer.addEventListener('touchend', onTouchEnd);
       }
 
-      // 打开预览
       function openPreview(index) {
         previewIndex = index;
         renderPreview();
         previewModal.classList.add('active');
       }
 
-      // 渲染预览
       function renderPreview() {
         if (!currentProductCarousel || currentProductCarousel.length === 0) return;
         previewSlides.innerHTML = '';
@@ -1155,6 +1063,10 @@
           const img = document.createElement('img');
           img.src = src;
           img.alt = `预览图${idx + 1}`;
+          
+          // 预览模态框内的图片同样禁止下载
+          disableImageDownload(img);
+          
           slide.appendChild(img);
           previewSlides.appendChild(slide);
 
@@ -1182,7 +1094,6 @@
         });
       }
 
-      // 预览切换
       previewPrev.addEventListener('click', () => {
         if (!currentProductCarousel || currentProductCarousel.length === 0) return;
         previewIndex = (previewIndex - 1 + currentProductCarousel.length) % currentProductCarousel.length;
@@ -1202,7 +1113,6 @@
         }
       });
 
-      // 渲染规格标签（无图标）
       function renderSpecs(spec1, spec2, spec3) {
         specTagsContainer.innerHTML = '';
         const specs = [spec1, spec2, spec3];
@@ -1216,116 +1126,123 @@
         });
       }
 
-      // 渲染视频模块
-      function renderVideos(videos) {
-        if (!videos || videos.length === 0) {
-          videoSection.classList.add('hidden');
-          return;
-        }
-        videoSection.classList.remove('hidden');
-        videoContainer.innerHTML = '';
+      // 视频渲染（保持原有禁用下载逻辑）
+      // function renderVideos(videos) {
+      //   if (!videos || videos.length === 0) {
+      //     videoSection.classList.add('hidden');
+      //     return;
+      //   }
+      //   videoSection.classList.remove('hidden');
+      //   videoContainer.innerHTML = '';
 
-        if (videos.length === 1) {
-          const singleDiv = document.createElement('div');
-          singleDiv.className = 'video-single';
-          const video = document.createElement('video');
-          video.controls = true;
-          video.playsInline = true;
-          const source = document.createElement('source');
-          source.src = videos[0];
-          source.type = 'video/mp4';
-          video.appendChild(source);
-          video.poster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f4f8'/%3E%3Ctext x='30' y='110' font-family='Inter' font-size='24' fill='%238f9eb5' font-weight='300'%3EPREVIEW%3C/text%3E%3C/svg%3E";
-          singleDiv.appendChild(video);
-          videoContainer.appendChild(singleDiv);
-        } else {
-          const carouselDiv = document.createElement('div');
-          carouselDiv.className = 'video-carousel-container';
-          carouselDiv.innerHTML = `
-            <div class="video-carousel-slides" id="video-carousel-slides"></div>
-            <div class="video-carousel-arrow left" id="video-carousel-prev"><i class="ri-arrow-left-s-line"></i></div>
-            <div class="video-carousel-arrow right" id="video-carousel-next"><i class="ri-arrow-right-s-line"></i></div>
-            <div class="video-carousel-dots" id="video-carousel-dots"></div>
-          `;
-          videoContainer.appendChild(carouselDiv);
+      //   function disableVideoDownload(videoElement) {
+      //     videoElement.controlsList = "nodownload";
+      //     videoElement.disablePictureInPicture = true;
+      //     videoElement.oncontextmenu = (e) => e.preventDefault();
+      //     videoElement.setAttribute('controlslist', 'nodownload');
+      //   }
 
-          const slidesContainer = document.getElementById('video-carousel-slides');
-          const dotsContainer = document.getElementById('video-carousel-dots');
-          const prevVideo = document.getElementById('video-carousel-prev');
-          const nextVideo = document.getElementById('video-carousel-next');
+      //   if (videos.length === 1) {
+      //     const singleDiv = document.createElement('div');
+      //     singleDiv.className = 'video-single';
+      //     const video = document.createElement('video');
+      //     video.controls = true;
+      //     video.playsInline = true;
+      //     disableVideoDownload(video);
+      //     const source = document.createElement('source');
+      //     source.src = videos[0];
+      //     source.type = 'video/mp4';
+      //     video.appendChild(source);
+      //     video.poster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f4f8'/%3E%3Ctext x='30' y='110' font-family='Inter' font-size='24' fill='%238f9eb5' font-weight='300'%3EPREVIEW%3C/text%3E%3C/svg%3E";
+      //     singleDiv.appendChild(video);
+      //     videoContainer.appendChild(singleDiv);
+      //   } else {
+      //     const carouselDiv = document.createElement('div');
+      //     carouselDiv.className = 'video-carousel-container';
+      //     carouselDiv.innerHTML = `
+      //       <div class="video-carousel-slides" id="video-carousel-slides"></div>
+      //       <div class="video-carousel-arrow left" id="video-carousel-prev"><i class="ri-arrow-left-s-line"></i></div>
+      //       <div class="video-carousel-arrow right" id="video-carousel-next"><i class="ri-arrow-right-s-line"></i></div>
+      //       <div class="video-carousel-dots" id="video-carousel-dots"></div>
+      //     `;
+      //     videoContainer.appendChild(carouselDiv);
 
-          let videoIndex = 0;
+      //     const slidesContainer = document.getElementById('video-carousel-slides');
+      //     const dotsContainer = document.getElementById('video-carousel-dots');
+      //     const prevVideo = document.getElementById('video-carousel-prev');
+      //     const nextVideo = document.getElementById('video-carousel-next');
 
-          videos.forEach((src, idx) => {
-            const slide = document.createElement('div');
-            slide.className = 'video-carousel-slide';
-            const video = document.createElement('video');
-            video.controls = true;
-            video.playsInline = true;
-            const source = document.createElement('source');
-            source.src = src;
-            source.type = 'video/mp4';
-            video.appendChild(source);
-            video.poster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f4f8'/%3E%3Ctext x='30' y='110' font-family='Inter' font-size='24' fill='%238f9eb5' font-weight='300'%3EPREVIEW%3C/text%3E%3C/svg%3E";
-            slide.appendChild(video);
-            slidesContainer.appendChild(slide);
+      //     let videoIndex = 0;
 
-            const dot = document.createElement('span');
-            dot.className = 'video-carousel-dot';
-            if (idx === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => {
-              videoIndex = idx;
-              updateVideoCarousel();
-            });
-            dotsContainer.appendChild(dot);
-          });
+      //     videos.forEach((src, idx) => {
+      //       const slide = document.createElement('div');
+      //       slide.className = 'video-carousel-slide';
+      //       const video = document.createElement('video');
+      //       video.controls = true;
+      //       video.playsInline = true;
+      //       disableVideoDownload(video);
+      //       const source = document.createElement('source');
+      //       source.src = src;
+      //       source.type = 'video/mp4';
+      //       video.appendChild(source);
+      //       video.poster = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'%3E%3Crect width='400' height='200' fill='%23f0f4f8'/%3E%3Ctext x='30' y='110' font-family='Inter' font-size='24' fill='%238f9eb5' font-weight='300'%3EPREVIEW%3C/text%3E%3C/svg%3E";
+      //       slide.appendChild(video);
+      //       slidesContainer.appendChild(slide);
 
-          function updateVideoCarousel() {
-            const offset = videoIndex * 100;
-            slidesContainer.style.transform = `translateX(-${offset}%)`;
-            Array.from(dotsContainer.children).forEach((dot, i) => {
-              if (i === videoIndex) {
-                dot.classList.add('active');
-              } else {
-                dot.classList.remove('active');
-              }
-            });
-          }
+      //       const dot = document.createElement('span');
+      //       dot.className = 'video-carousel-dot';
+      //       if (idx === 0) dot.classList.add('active');
+      //       dot.addEventListener('click', () => {
+      //         videoIndex = idx;
+      //         updateVideoCarousel();
+      //       });
+      //       dotsContainer.appendChild(dot);
+      //     });
 
-          prevVideo.addEventListener('click', () => {
-            videoIndex = (videoIndex - 1 + videos.length) % videos.length;
-            updateVideoCarousel();
-          });
+      //     function updateVideoCarousel() {
+      //       const offset = videoIndex * 100;
+      //       slidesContainer.style.transform = `translateX(-${offset}%)`;
+      //       Array.from(dotsContainer.children).forEach((dot, i) => {
+      //         if (i === videoIndex) {
+      //           dot.classList.add('active');
+      //         } else {
+      //           dot.classList.remove('active');
+      //         }
+      //       });
+      //     }
 
-          nextVideo.addEventListener('click', () => {
-            videoIndex = (videoIndex + 1) % videos.length;
-            updateVideoCarousel();
-          });
+      //     prevVideo.addEventListener('click', () => {
+      //       videoIndex = (videoIndex - 1 + videos.length) % videos.length;
+      //       updateVideoCarousel();
+      //     });
 
-          updateVideoCarousel();
-        }
-      }
+      //     nextVideo.addEventListener('click', () => {
+      //       videoIndex = (videoIndex + 1) % videos.length;
+      //       updateVideoCarousel();
+      //     });
 
-      // 暂停所有视频（用于返回列表页）
-      function pauseAllVideos() {
-        const videos = document.querySelectorAll('video');
-        videos.forEach(v => {
-          v.pause();
-        });
-      }
+      //     updateVideoCarousel();
+      //   }
+      // }
+
+      // function pauseAllVideos() {
+      //   const videos = document.querySelectorAll('video');
+      //   videos.forEach(v => {
+      //     v.pause();
+      //   });
+      // }
 
       function showDetail(prod) {
         currentProductCarousel = prod.carousel || [];
         renderCarousel(currentProductCarousel);
-        bindSwipeEvents(); // 绑定触摸事件
+        bindSwipeEvents();
 
         detailName.textContent = prod.name;
         detailPrice.textContent = prod.price;
-        // detailDesc.textContent = prod.description;
         detailDesc.innerHTML = prod.description;
 
         renderSpecs(prod.spec1, prod.spec2, prod.spec3);
-        renderVideos(prod.videos || []);
+        // renderVideos(prod.videos || []);
 
         listPage.classList.add('hidden');
         detailPage.classList.remove('hidden');
@@ -1334,13 +1251,12 @@
       backBtn.addEventListener('click', () => {
         detailPage.classList.add('hidden');
         listPage.classList.remove('hidden');
-        pauseAllVideos(); // 暂停所有视频
-        previewModal.classList.remove('active'); // 关闭可能打开的预览
+        // pauseAllVideos();
+        previewModal.classList.remove('active');
       });
 
       renderGrid();
     })();
   </script>
 </body>
-
 </html>
